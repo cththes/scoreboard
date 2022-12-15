@@ -1,0 +1,10 @@
+.timerInput{
+   width:30px;
+   margin:5px;
+   margin-top:50px;
+}
+
+.inputs{
+   display: flex;
+   justify-content: center;
+}
