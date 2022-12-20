@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from './Timer.module.css'
 import { getPadTime } from '../../helpers/getPadTime'
-import TimeInput from '../TimeInput/TimeInput'
+import TimeInputs from '../TimeInput/TimeInputs'
 
 const Timer = () => {
   const [timeLeft, setTimeLeft] = useState(3 * 60)
@@ -66,11 +66,11 @@ const Timer = () => {
           <span>:</span>
           <span>{seconds}</span>
         {editMode && 
-          <TimeInput  onTimeChange={onTimeChange}
-                      secondsElement={secondsElement} 
-                      minutesElement={minutesElement} 
-                      setEditMode={setEditMode}
-                      onEditTimer={onEditTimer}/>}
+            <TimeInputs  onTimeChange={onTimeChange}
+                        secondsElement={secondsElement} 
+                        minutesElement={minutesElement} 
+                        setEditMode={setEditMode}
+                        onEditTimer={onEditTimer}/>}
       </div>
 
       <div className={styles.buttons}>
