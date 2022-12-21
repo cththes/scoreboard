@@ -28,23 +28,26 @@ const Timer = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      isCounting && setTimeLeft((timeLeft) => (timeLeft >= 1 ? timeLeft -1 : 0))
+      isCounting && setTimeLeft((timeLeft) => (timeLeft >= 0 ? timeLeft -1 : 0))
     }, 1000)
-    if (timeLeft === 0){
-      setIsCounting(false)
+    if (timeLeft === -1){
+      isCounting && setTimeLeft(7)
       setIsTimeout(true)
+    }
+    if (isTimeout === true) {
+      if (timeLeft === 0){
+        setIsCounting(false)
+      }
     }
     return () => {
       clearInterval(interval)
     }
   }, [timeLeft, isCounting])
+
   const handleStart = () => {
     if (timeLeft === 0) setTimeLeft(timeReset)
     editMode && setEditMode(false)
-    setIsTimeout(!isTimeout)
-    if (isTimeout) {
-      setTimeLeft(30)
-    }
+    setIsCounting(true)
   }
 
   const handleStop = () => {
@@ -58,6 +61,10 @@ const Timer = () => {
 
   let minutesElement = React.createRef()
   let secondsElement = React.createRef()
+  let minutesTimeoutElement = React.createRef()
+  let secondsTimeoutElement = React.createRef()
+  let minutesPenaltyElement = React.createRef()
+  let secondsPenaltyElement = React.createRef()
 
   return(
     <div className={styles.main}>
@@ -69,6 +76,10 @@ const Timer = () => {
             <TimeInputs  onTimeChange={onTimeChange}
                         secondsElement={secondsElement} 
                         minutesElement={minutesElement} 
+                        minutesTimeoutElement={minutesTimeoutElement}
+                        secondsTimeoutElement={secondsTimeoutElement}
+                        minutesPenaltyElement={minutesPenaltyElement}
+                        secondsPenaltyElement={secondsPenaltyElement}
                         setEditMode={setEditMode}
                         onEditTimer={onEditTimer}/>}
       </div>

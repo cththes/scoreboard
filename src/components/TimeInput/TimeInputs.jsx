@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import styles from './TimeInputs.module.css'
 
-const TimeInputs = ({onTimeChange, onEditTimer, minutesElement, secondsElement}) => {
+const TimeInputs = ({
+   onTimeChange, 
+   onEditTimer, 
+   minutesElement, 
+   secondsElement,
+   minutesTimeoutElement,
+   secondsTimeoutElement,
+   minutesPenaltyElement,
+   secondsPenaltyElement
+}) => {
 
    return(
       <div className={styles.inputs}>
@@ -24,10 +33,27 @@ const TimeInputs = ({onTimeChange, onEditTimer, minutesElement, secondsElement})
             ref={secondsElement}   
          ></input>
 
-         <input className={styles.timerInput} placeholder="min"></input>
-         <input className={styles.timerInput} placeholder="sec"></input>
-         <input className={styles.timerInput} placeholder="min"></input>
-         <input className={styles.timerInput} placeholder="sec"></input>
+         <input className={styles.timerInput} 
+            placeholder="min"
+            ref={minutesTimeoutElement}
+            onKeyPress={(e) => e.key === 'Enter' && setEditMode(false)}
+            ></input>
+         <input className={styles.timerInput}
+            placeholder="sec"
+            onChange={onTimeChange}
+            onKeyPress={(e) => e.key === 'Enter' && setEditMode(false)}
+            ref={secondsTimeoutElement}
+            ></input>
+            
+         <input className={styles.timerInput}
+            placeholder="min"
+            onChange={onTimeChange}
+            ref={minutesPenaltyElement}
+            ></input>
+         <input className={styles.timerInput}
+            placeholder="sec"
+            ref={secondsPenaltyElement}
+            ></input>
       </div>
    )
 }
