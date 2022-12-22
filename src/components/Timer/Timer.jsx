@@ -59,6 +59,23 @@ const Timer = () => {
     setTimeLeft(timeReset)
   }
 
+  const handleKeyDown = (event) => {
+    const key = event.nativeEvent.code;
+    switch (key){
+        case 'KeyR':
+          if (!editMode) {
+            handleReset()
+          }
+        // case 'KeyS':
+        //   if (!editMode){
+        //     isCounting ? handleStop() : handleStart()
+        //   }
+          break;
+       default:
+          return 0
+    }
+ }
+
   let minutesElement = React.createRef()
   let secondsElement = React.createRef()
   let minutesTimeoutElement = React.createRef()
@@ -67,7 +84,7 @@ const Timer = () => {
   let secondsPenaltyElement = React.createRef()
 
   return(
-    <div className={styles.main}>
+    <div className={styles.main} onKeyDown={handleKeyDown}>
       <div className={styles.timer} onDoubleClick={onEditTimer}>
           <span>{minutes}</span>
           <span>:</span>

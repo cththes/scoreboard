@@ -27,8 +27,27 @@ const Scoreboard = () => {
    }
 
    const onEditTitle = () => {
-      setEditMode(!editMode)
-      
+      setEditMode(!editMode) 
+   }
+
+   const handleKeyDown = (event) => {
+      const key = event.nativeEvent.code;
+      switch (key){
+         case 'KeyQ':
+            !editMode && incrementLeftScore()
+            break;
+         case 'KeyA':
+            !editMode && decrementLeftScore()
+            break;
+         case 'KeyE':
+            !editMode && incrementRightScore()
+            break;
+         case 'KeyD':
+            !editMode && decrementRightScore()
+            break;
+         default:
+            return 0
+      }
    }
 
    const onTitleChange = (e) => {
@@ -47,7 +66,7 @@ const Scoreboard = () => {
    let bottomElement = React.createRef()
 
    return (
-      <div className={styles.scoreBoard}>
+      <div className={styles.scoreBoard} onKeyDown={handleKeyDown} tabIndex={0}>
          <div className={styles.leftScore}>
          {
                leftScore < 10 ? <div className={styles.scoreNumber}>{leftScore}</div> 
@@ -75,7 +94,7 @@ const Scoreboard = () => {
                      onChange={onTitleChange}
                      ref={topElement}
                      value={topTitle}
-                     maxlength ="20"
+                     maxLength ="20"
                      onKeyPress={(e) => {
                         e.key === 'Enter' && setEditMode(false)
                      }}
