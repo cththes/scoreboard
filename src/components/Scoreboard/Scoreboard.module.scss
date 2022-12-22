@@ -48,6 +48,9 @@
 
 .buttons{
    max-height:150px;
+   display:flex;
+   align-items: flex-end;
+   justify-content: center;
 }
 
 .leftScore button{
@@ -72,15 +75,16 @@
 
 .resetBtn button{
    font-size:calc(1vh + 1vw);
-   width:6vw;
-   height:6vh;
-   margin-top:15px;
 }
 
 .scoreNumber{
+   display:flex;
+   align-items: flex-start;
+   justify-content: center;
    color: #f0f2f5;
    font-size:calc(25vh + 15vw);
-   margin-left:5px;
+   position: relative;
+   bottom: 60px;
 }
 
 .scoreNumberSmall{
@@ -106,5 +110,9 @@
    max-height: 120px;
    margin: 0;
    white-space: nowrap;
+}
+
+.scoreInputs{
+   
 }
 

@@ -26,7 +26,7 @@ const Scoreboard = () => {
       rightScore > 0 && setRightScore(rightScore - 1)
    }
 
-   const onEditTitle = () => {
+   const onEditMode = () => {
       setEditMode(!editMode) 
    }
 
@@ -67,11 +67,16 @@ const Scoreboard = () => {
 
    return (
       <div className={styles.scoreBoard} onKeyDown={handleKeyDown} tabIndex={0}>
-         <div className={styles.leftScore}>
+         <div className={styles.leftScore} onDoubleClick={onEditMode}>
          {
                leftScore < 10 ? <div className={styles.scoreNumber}>{leftScore}</div> 
                : <div className={styles.scoreNumberSmall}>{leftScore}</div> 
             } 
+
+            {editMode && <div className={styles.scoreInputs} onDoubleClick={onEditMode}>
+               <input placeholder="название команды"></input>
+               <input placeholder="имя игрока"></input>
+               </div>}
             <div className={styles.buttons}>
                <button onClick={incrementLeftScore}>+</button>
                <button onClick={decrementLeftScore}>-</button>
@@ -83,14 +88,14 @@ const Scoreboard = () => {
 
          <div>
          <Timer/>
-         <div className={styles.title} onDoubleClick={onEditTitle}>
+         <div className={styles.title} onDoubleClick={onEditMode}>
             {editMode && 
                <div className={styles.titleInput}>
                   <div>
                      <input 
                      autoFocus={true}
-                     onblur={onEditTitle}
-                     onDoubleClick={onEditTitle}
+                     onblur={onEditMode}
+                     onDoubleClick={onEditMode}
                      onChange={onTitleChange}
                      ref={topElement}
                      value={topTitle}
@@ -108,7 +113,7 @@ const Scoreboard = () => {
             <div>
                <h1 
                className={styles.titleH1}
-               onDoubleClick={onEditTitle}
+               onDoubleClick={onEditMode}
                >{topTitle}
                </h1>
             </div>
@@ -126,6 +131,11 @@ const Scoreboard = () => {
                rightScore < 10 ? <div className={styles.scoreNumber}>{rightScore}</div> 
                : <div className={styles.scoreNumberSmall}>{rightScore}</div> 
             }   
+
+            {editMode && <div className={styles.scoreInputs} onDoubleClick={onEditMode}>
+               <input placeholder="название команды"></input>
+               <input placeholder="имя игрока"></input>
+               </div>}
             <div className={styles.buttons}> 
                <button onClick={incrementRightScore}>+</button>
                <button onClick={decrementRightScore}>-</button>
