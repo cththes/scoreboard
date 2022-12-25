@@ -2,49 +2,24 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Timer from '../Timer/Timer';
 import styles from "./Scoreboard.module.scss"
-import {
-   decrementLeft, decrementRight, incrementLeft, incrementRight, resetCount, setEditMode,
-   setTitle
-} from '../../store/scoreboardSlice';
+import { setCount, setEditMode, setTitle } from '../../store/scoreboardSlice';
 
 const Scoreboard = () => {
    const state = useSelector(state => state.scoreboard)
+
    const dispatch = useDispatch();
 
-   // const handleKeyDown = (event) => {
-   //    const key = event.nativeEvent.code;
-   //    switch (key){
-   //       case 'KeyQ':
-   //          !editMode && dispatch(incrementLeft())
-   //          break;
-   //       case 'KeyA':
-   //          !editMode && dispatch(decrementLeft())
-   //          break;
-   //       case 'KeyE':
-   //          !editMode && dispatch(incrementRight())
-   //          break;
-   //       case 'KeyD':
-   //          !editMode && dispatch(decrementRight())
-   //          break;
-   //       default:
-   //          return 0
-   //    }
-   // }
-
-   const onTitleChange = (id, value) => {
-      //setTopTitle(topElement.current.value)
-      //setBottomTitle(bottomElement.current.value)
-      console.log('id: ', id, 'value: ', value)
-      dispatch(setTitle({ id, value }))
-      if (topElement.current.value.lenght === 0) topElement.current.value = ""
-      if (bottomElement.current.value.lenght === 0) bottomElement.current.value = ""
+   const handleKeyDown = (event) => {
+      !state.editMode && dispatch(setCount(event.nativeEvent.code))
    }
 
-   let topElement = React.createRef()
-   let bottomElement = React.createRef()
+   const onTitleChange = (id, value) => {
+      console.log('id: ', id, 'value: ', value)
+      dispatch(setTitle({ id, value }))
+   }
 
    return (
-      <div className={styles.scoreBoard} /*onKeyDown={() => handleKeyDown()}*/ tabIndex={0}>
+      <div className={styles.scoreBoard} onKeyDown={(event) => handleKeyDown(event)} tabIndex={0}>
          <div className={styles.leftCount} onDoubleClick={() => dispatch(setEditMode())}>
             {
                state.leftCount < 10 ?
@@ -86,10 +61,10 @@ const Scoreboard = () => {
 
             </div>}
             <div className={styles.buttons}>
-               <button onClick={() => dispatch(incrementLeft())}>+</button>
-               <button onClick={() => dispatch(decrementLeft())}>-</button>
+               <button onClick={() => dispatch(setCount("KeyQ"))}>+</button>
+               <button onClick={() => dispatch(setCount("KeyA"))}>-</button>
                <div id="resetBtn" className={styles.resetBtn}>
-                  <button onClick={() => dispatch(resetCount())}>Reset</button>
+                  <button onClick={() => dispatch(setCount("KeyR"))}>Reset</button>
                </div>
             </div>
          </div>
@@ -157,11 +132,11 @@ const Scoreboard = () => {
                </div>}
 
             <div className={styles.buttons}>
-               <button onClick={() => dispatch(incrementRight())}>+</button>
-               <button onClick={() => dispatch(decrementRight())}>-</button>
+               <button onClick={() => dispatch(setCount("KeyE"))}>+</button>
+               <button onClick={() => dispatch(setCount("KeyD"))}>-</button>
 
                <div id="resetBtn" className={styles.resetBtn}>
-                  <button onClick={() => dispatch(resetCount())}>Reset</button>
+                  <button onClick={() => dispatch(setCount("KeyR"))}>Reset</button>
                </div>
             </div>
          </div>

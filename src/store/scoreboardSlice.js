@@ -8,27 +8,34 @@ const scoreboardSlice = createSlice({
       editMode: false,
       topTitle: "",
       bottomTitle: "BUGACHIEV - SPORTS",
-      leftTeamTitle: "123",
-      leftPlayerTitle: "456",
+      leftTeamTitle: "",
+      leftPlayerTitle: "",
       rightTeamTitle: "",
       rightPlayerTitle: ""
    },
    reducers: {
-      incrementLeft(state) {
-         state.leftCount = state.leftCount + 1
-      },
-      decrementLeft(state) {
-         if (state.leftCount > 0) state.leftCount = state.leftCount - 1
-      },
-      incrementRight(state) {
-         state.rightCount = state.rightCount + 1
-      },
-      decrementRight(state) {
-         if (state.rightCount > 0) state.rightCount = state.rightCount - 1
-      },
-      resetCount(state) {
-         state.leftCount = 0,
-         state.rightCount = 0
+      setCount(state, action) {
+         console.log('setCount.action.payload', action.payload)
+         switch (action.payload){
+            case 'KeyQ':
+               state.leftCount = state.leftCount + 1;
+               break;
+            case 'KeyA':
+               if (state.leftCount > 0) state.leftCount = state.leftCount - 1;
+               break;
+            case 'KeyE':
+               state.rightCount = state.rightCount + 1;
+               break;
+            case 'KeyD':
+               if (state.rightCount > 0) state.rightCount = state.rightCount - 1;
+               break;
+            case 'KeyR':
+                  state.leftCount = 0,
+                  state.rightCount = 0
+                  break;
+            default:
+               return 0
+         }
       },
       setEditMode(state) {
          state.editMode = !state.editMode
@@ -67,11 +74,4 @@ const scoreboardSlice = createSlice({
 })
 
 export default scoreboardSlice.reducer
-export const {
-   incrementLeft, 
-   decrementLeft, 
-   incrementRight, 
-   decrementRight,
-   resetCount,
-   setEditMode,
-   setTitle,} = scoreboardSlice.actions
+export const {setCount, setEditMode, setTitle} = scoreboardSlice.actions
