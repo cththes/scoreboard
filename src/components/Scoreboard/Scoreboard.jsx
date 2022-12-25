@@ -1,94 +1,74 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Timer from '../Timer/Timer';
 import styles from "./Scoreboard.module.scss"
+import { decrementLeft, decrementRight, incrementLeft, incrementRight, resetCount, setEditMode,
+         setTitle} from '../../store/scoreboardSlice';
 
 const Scoreboard = () => {
-   const [leftScore, setLeftScore] = useState(0);
-   const [rightScore, setRightScore] = useState(0);
-   const [editMode, setEditMode] = useState(false)
-   const [topTitle, setTopTitle] = useState("")
-   const [bottomTitle, setBottomTitle] = useState("BUGACHIEV - SPORTS")
-   const [leftTeamTitle, setLeftTeamTitle] = useState("123")
-   const [leftPlayerTitle, setLeftPlayerTitle] = useState("456")
-   const [rightTeamTitle, setRightTeamTitle] = useState("")
-   const [rightPlayerTitle, setRightPlayerTitle] = useState("")
-   
+   const leftCount = useSelector(state => state.scoreboard.leftCount)
+   const rightCount = useSelector(state => state.scoreboard.rightCount)
+   const editMode = useSelector(state => state.scoreboard.editMode)
+   const topTitle = useSelector(state => state.scoreboard.topTitle)
+   const bottomTitle = useSelector(state => state.scoreboard.bottomTitle)
+   const leftTeamTitle = useSelector(state => state.scoreboard.leftTeamTitle)
+   const leftPlayerTitle = useSelector(state => state.scoreboard.leftPlayerTitle)
+   const rightTeamTitle = useSelector(state => state.scoreboard.rightTeamTitle)
+   const rightPlayerTitle = useSelector(state => state.scoreboard.rightPlayerTitle)
 
-   const incrementLeftScore = () => {
-      setLeftScore(leftScore + 1)
-   }
+   const dispatch = useDispatch();
 
-   const decrementLeftScore = () => {
-      leftScore > 0 && setLeftScore(leftScore - 1)
-   }
+   // const handleKeyDown = (event) => {
+   //    const key = event.nativeEvent.code;
+   //    switch (key){
+   //       case 'KeyQ':
+   //          !editMode && dispatch(incrementLeft())
+   //          break;
+   //       case 'KeyA':
+   //          !editMode && dispatch(decrementLeft())
+   //          break;
+   //       case 'KeyE':
+   //          !editMode && dispatch(incrementRight())
+   //          break;
+   //       case 'KeyD':
+   //          !editMode && dispatch(decrementRight())
+   //          break;
+   //       default:
+   //          return 0
+   //    }
+   // }
 
-   const incrementRightScore = () => {
-      setRightScore(rightScore + 1)
-   }
-
-   const decrementRightScore = () => {
-      rightScore > 0 && setRightScore(rightScore - 1)
-   }
-
-   const onEditMode = () => {
-      setEditMode(!editMode) 
-   }
-
-   const handleKeyDown = (event) => {
-      const key = event.nativeEvent.code;
-      switch (key){
-         case 'KeyQ':
-            !editMode && incrementLeftScore()
-            break;
-         case 'KeyA':
-            !editMode && decrementLeftScore()
-            break;
-         case 'KeyE':
-            !editMode && incrementRightScore()
-            break;
-         case 'KeyD':
-            !editMode && decrementRightScore()
-            break;
-         default:
-            return 0
-      }
-   }
-
-   const onTitleChange = (e) => {
-      setTopTitle(topElement.current.value)
-      setBottomTitle(bottomElement.current.value)
-      if (topElement.current.value.lenght === 0 ) topElement.current.value.lenght = ""
+   const onTitleChange = (id, value) => {
+      //setTopTitle(topElement.current.value)
+      dispatch(setTitle(id, value))
+      //setBottomTitle(bottomElement.current.value)
+      if (topElement.current.value.lenght === 0 ) topElement.current.value = ""
       if (bottomElement.current.value.lenght === 0 ) bottomElement.current.value = ""
-   }
-
-   const onReset = () => {
-      setLeftScore(0)
-      setRightScore(0)
    }
 
    let topElement = React.createRef()
    let bottomElement = React.createRef()
 
    return (
-      <div className={styles.scoreBoard} onKeyDown={handleKeyDown} tabIndex={0}>
-         <div className={styles.leftScore} onDoubleClick={onEditMode}>
+      <div className={styles.scoreBoard} /*onKeyDown={() => handleKeyDown()}*/ tabIndex={0}>
+         <div className={styles.leftCount} onDoubleClick={() => dispatch(setEditMode())}>
          {
-               leftScore < 10 ?
+               leftCount < 10 ?
                <div>
-                  <div className={styles.scoreNumber}>
-                     {leftScore}
+                  <div className={styles.countNumber}>
+                     {leftCount}
                   </div> 
-                  <div className={styles.scoreTitles}>
+                  <div className={styles.countTitles}>
                      <h3>{leftTeamTitle}</h3>
                      <h3>{leftPlayerTitle}</h3>
                   </div>
                </div>
                :
                <div>
-                  <div className={styles.scoreNumberSmall}>
-                     {leftScore}
+                  <div className={styles.countNumberSmall}>
+                     {leftCount}
                   </div> 
-                  <div className={styles.scoreTitles}>
+                  <div className={styles.countTitles}>
                      <h3>{leftTeamTitle}</h3>
                      <h3>{leftPlayerTitle}</h3>
                   </div>
@@ -97,35 +77,37 @@ const Scoreboard = () => {
 
 
 
-            {editMode && <div className={styles.scoreInputs} onDoubleClick={onEditMode}>
+            {editMode && <div className={styles.countInputs} onDoubleClick={() => dispatch(setEditMode())}>
                <input placeholder="название команды"></input>
                <input placeholder="имя игрока"></input>
                </div>}
             <div className={styles.buttons}>
-               <button onClick={incrementLeftScore}>+</button>
-               <button onClick={decrementLeftScore}>-</button>
+               <button onClick={() => dispatch(incrementLeft())}>+</button>
+               <button onClick={() => dispatch(decrementLeft())}>-</button>
                <div id="resetBtn" className={styles.resetBtn}>
-                  <button onClick={onReset}>Reset</button>
+                  <button onClick={() => dispatch(resetCount())}>Reset</button>
                </div>
             </div>
          </div>
 
          <div>
+
          <Timer/>
-         <div className={styles.title} onDoubleClick={onEditMode}>
+
+         <div className={styles.title} onDoubleClick={() => dispatch(setEditMode())}>
             {editMode && 
                <div className={styles.titleInput}>
                   <div>
                      <input 
                      autoFocus={true}
-                     onblur={onEditMode}
-                     onDoubleClick={onEditMode}
-                     onChange={onTitleChange}
+                     onBlur={() => dispatch(setEditMode())}
+                     onDoubleClick={() => dispatch(setEditMode())}
+                     onChange={() => onTitleChange("top_footer", "123")}
                      ref={topElement}
                      value={topTitle}
                      maxLength ="20"
                      onKeyPress={(e) => {
-                        e.key === 'Enter' && setEditMode(false)
+                        e.key === 'Enter' && dispatch(setEditMode())
                      }}
                      ></input>
                   </div>
@@ -137,7 +119,7 @@ const Scoreboard = () => {
             <div>
                <h1 
                className={styles.titleH1}
-               onDoubleClick={onEditMode}
+               onDoubleClick={() => dispatch(setEditMode())}
                >{topTitle}
                </h1>
             </div>
@@ -150,22 +132,22 @@ const Scoreboard = () => {
          </div>
       </div>
          
-         <div className={styles.rightScore}>
+         <div className={styles.rightCount}>
             {
-               rightScore < 10 ? <div className={styles.scoreNumber}>{rightScore}</div> 
-               : <div className={styles.scoreNumberSmall}>{rightScore}</div> 
+               rightCount < 10 ? <div className={styles.countNumber}>{rightCount}</div> 
+               : <div className={styles.countNumberSmall}>{rightCount}</div> 
             }   
 
-            {editMode && <div className={styles.scoreInputs} onDoubleClick={onEditMode}>
+            {editMode && <div className={styles.countInputs} onDoubleClick={() => dispatch(setEditMode())}>
                <input placeholder="название команды"></input>
                <input placeholder="имя игрока"></input>
                </div>}
             <div className={styles.buttons}> 
-               <button onClick={incrementRightScore}>+</button>
-               <button onClick={decrementRightScore}>-</button>
+               <button onClick={() => dispatch(incrementRight())}>+</button>
+               <button onClick={() => dispatch(decrementRight())}>-</button>
 
                <div id="resetBtn" className={styles.resetBtn}>
-                  <button onClick={onReset}>Reset</button>
+                  <button onClick={() => dispatch(resetCount())}>Reset</button>
                </div>
             </div>
          </div>
