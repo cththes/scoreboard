@@ -2,20 +2,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Timer from '../Timer/Timer';
 import styles from "./Scoreboard.module.scss"
-import { decrementLeft, decrementRight, incrementLeft, incrementRight, resetCount, setEditMode,
-         setTitle} from '../../store/scoreboardSlice';
+import {
+   decrementLeft, decrementRight, incrementLeft, incrementRight, resetCount, setEditMode,
+   setTitle
+} from '../../store/scoreboardSlice';
 
 const Scoreboard = () => {
-   const leftCount = useSelector(state => state.scoreboard.leftCount)
-   const rightCount = useSelector(state => state.scoreboard.rightCount)
-   const editMode = useSelector(state => state.scoreboard.editMode)
-   const topTitle = useSelector(state => state.scoreboard.topTitle)
-   const bottomTitle = useSelector(state => state.scoreboard.bottomTitle)
-   const leftTeamTitle = useSelector(state => state.scoreboard.leftTeamTitle)
-   const leftPlayerTitle = useSelector(state => state.scoreboard.leftPlayerTitle)
-   const rightTeamTitle = useSelector(state => state.scoreboard.rightTeamTitle)
-   const rightPlayerTitle = useSelector(state => state.scoreboard.rightPlayerTitle)
-
+   const state = useSelector(state => state.scoreboard)
    const dispatch = useDispatch();
 
    // const handleKeyDown = (event) => {
@@ -40,10 +33,11 @@ const Scoreboard = () => {
 
    const onTitleChange = (id, value) => {
       //setTopTitle(topElement.current.value)
-      dispatch(setTitle(id, value))
       //setBottomTitle(bottomElement.current.value)
-      if (topElement.current.value.lenght === 0 ) topElement.current.value = ""
-      if (bottomElement.current.value.lenght === 0 ) bottomElement.current.value = ""
+      console.log('id: ', id, 'value: ', value)
+      dispatch(setTitle({ id, value }))
+      if (topElement.current.value.lenght === 0) topElement.current.value = ""
+      if (bottomElement.current.value.lenght === 0) bottomElement.current.value = ""
    }
 
    let topElement = React.createRef()
@@ -52,35 +46,45 @@ const Scoreboard = () => {
    return (
       <div className={styles.scoreBoard} /*onKeyDown={() => handleKeyDown()}*/ tabIndex={0}>
          <div className={styles.leftCount} onDoubleClick={() => dispatch(setEditMode())}>
-         {
-               leftCount < 10 ?
-               <div>
-                  <div className={styles.countNumber}>
-                     {leftCount}
-                  </div> 
-                  <div className={styles.countTitles}>
-                     <h3>{leftTeamTitle}</h3>
-                     <h3>{leftPlayerTitle}</h3>
+            {
+               state.leftCount < 10 ?
+                  <div>
+                     <div className={styles.countNumber}>
+                        {state.leftCount}
+                     </div>
+                     <div className={styles.countTitles}>
+                        <h3>{state.leftTeamTitle}</h3>
+                        <h3>{state.leftPlayerTitle}</h3>
+                     </div>
                   </div>
-               </div>
-               :
-               <div>
-                  <div className={styles.countNumberSmall}>
-                     {leftCount}
-                  </div> 
-                  <div className={styles.countTitles}>
-                     <h3>{leftTeamTitle}</h3>
-                     <h3>{leftPlayerTitle}</h3>
+                  :
+                  <div>
+                     <div className={styles.countNumberSmall}>
+                        {state.leftCount}
+                     </div>
+                     <div className={styles.countTitles}>
+                        <h3>{state.leftTeamTitle}</h3>
+                        <h3>{state.leftPlayerTitle}</h3>
+                     </div>
                   </div>
-               </div>
-            } 
+            }
 
 
 
-            {editMode && <div className={styles.countInputs} onDoubleClick={() => dispatch(setEditMode())}>
-               <input placeholder="название команды"></input>
-               <input placeholder="имя игрока"></input>
-               </div>}
+            {state.editMode && <div className={styles.countInputs} onDoubleClick={() => dispatch(setEditMode())}>
+               <input
+                  placeholder="название команды"
+                  onChange={(event) => onTitleChange("left_team", event.target.value)}
+                  value={state.leftTeamTitle}
+                  ></input>
+
+               <input 
+                  placeholder="имя игрока"
+                  onChange={(event) => onTitleChange("left_player", event.target.value)}
+                  value={state.leftPlayerTitle}
+               ></input>
+
+            </div>}
             <div className={styles.buttons}>
                <button onClick={() => dispatch(incrementLeft())}>+</button>
                <button onClick={() => dispatch(decrementLeft())}>-</button>
@@ -92,57 +96,67 @@ const Scoreboard = () => {
 
          <div>
 
-         <Timer/>
+            <Timer />
 
-         <div className={styles.title} onDoubleClick={() => dispatch(setEditMode())}>
-            {editMode && 
-               <div className={styles.titleInput}>
-                  <div>
-                     <input 
-                     autoFocus={true}
-                     onBlur={() => dispatch(setEditMode())}
+            <div className={styles.title} onDoubleClick={() => dispatch(setEditMode())}>
+               {state.editMode &&
+                  <div className={styles.titleInput}>
+                     <div>
+                        <input
+                           autoFocus={true}
+                           onDoubleClick={() => dispatch(setEditMode())}
+                           onChange={(event) => onTitleChange("top_footer", event.target.value)}
+                           value={state.topTitle}
+                           maxLength="20"
+                           onKeyPress={(e) => {
+                              e.key === 'Enter' && dispatch(setEditMode())
+                           }}
+                        ></input>
+                     </div>
+                     <div>
+
+                     </div>
+                  </div>
+               }
+               <div>
+                  <h1
+                     className={styles.titleH1}
                      onDoubleClick={() => dispatch(setEditMode())}
-                     onChange={() => onTitleChange("top_footer", "123")}
-                     ref={topElement}
-                     value={topTitle}
-                     maxLength ="20"
-                     onKeyPress={(e) => {
-                        e.key === 'Enter' && dispatch(setEditMode())
-                     }}
-                     ></input>
-                  </div>
-                  <div>
-                    
-                  </div>
+                  >{state.topTitle}
+                  </h1>
                </div>
-            }
-            <div>
-               <h1 
-               className={styles.titleH1}
-               onDoubleClick={() => dispatch(setEditMode())}
-               >{topTitle}
-               </h1>
-            </div>
-            <div>
-               <h1 
-               className={styles.titleH1}
-               >{bottomTitle}
-               </h1>
+               <div>
+                  <h1
+                     className={styles.titleH1}
+                  >{state.bottomTitle}
+                  </h1>
+               </div>
             </div>
          </div>
-      </div>
-         
+
          <div className={styles.rightCount}>
             {
-               rightCount < 10 ? <div className={styles.countNumber}>{rightCount}</div> 
-               : <div className={styles.countNumberSmall}>{rightCount}</div> 
-            }   
+               state.rightCount < 10 ?
+                  <div className={styles.countNumber}>{state.rightCount}</div>
+                  : <div className={styles.countNumberSmall}>{state.rightCount}</div>
+            }
 
-            {editMode && <div className={styles.countInputs} onDoubleClick={() => dispatch(setEditMode())}>
-               <input placeholder="название команды"></input>
-               <input placeholder="имя игрока"></input>
+            {state.editMode &&
+               <div className={styles.countInputs} onDoubleClick={() => dispatch(setEditMode())}>
+                  <input
+                     placeholder="название команды"
+                     value={state.rightTeamTitle}
+                     onChange={(event) => onTitleChange("right_team", event.target.value)}>
+                  </input>
+
+                  <input
+                     placeholder="имя игрока"
+                     value={state.rightPlayerTitle}
+                     onChange={(event) => onTitleChange("right_player", event.target.value)}>
+                  </input>
                </div>}
-            <div className={styles.buttons}> 
+
+            <div className={styles.buttons}>
                <button onClick={() => dispatch(incrementRight())}>+</button>
                <button onClick={() => dispatch(decrementRight())}>-</button>
 
