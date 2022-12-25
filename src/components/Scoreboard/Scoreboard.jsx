@@ -8,6 +8,10 @@ const Scoreboard = () => {
    const [editMode, setEditMode] = useState(false)
    const [topTitle, setTopTitle] = useState("")
    const [bottomTitle, setBottomTitle] = useState("BUGACHIEV - SPORTS")
+   const [leftTeamTitle, setLeftTeamTitle] = useState("123")
+   const [leftPlayerTitle, setLeftPlayerTitle] = useState("456")
+   const [rightTeamTitle, setRightTeamTitle] = useState("")
+   const [rightPlayerTitle, setRightPlayerTitle] = useState("")
    
 
    const incrementLeftScore = () => {
@@ -69,9 +73,29 @@ const Scoreboard = () => {
       <div className={styles.scoreBoard} onKeyDown={handleKeyDown} tabIndex={0}>
          <div className={styles.leftScore} onDoubleClick={onEditMode}>
          {
-               leftScore < 10 ? <div className={styles.scoreNumber}>{leftScore}</div> 
-               : <div className={styles.scoreNumberSmall}>{leftScore}</div> 
+               leftScore < 10 ?
+               <div>
+                  <div className={styles.scoreNumber}>
+                     {leftScore}
+                  </div> 
+                  <div className={styles.scoreTitles}>
+                     <h3>{leftTeamTitle}</h3>
+                     <h3>{leftPlayerTitle}</h3>
+                  </div>
+               </div>
+               :
+               <div>
+                  <div className={styles.scoreNumberSmall}>
+                     {leftScore}
+                  </div> 
+                  <div className={styles.scoreTitles}>
+                     <h3>{leftTeamTitle}</h3>
+                     <h3>{leftPlayerTitle}</h3>
+                  </div>
+               </div>
             } 
+
+
 
             {editMode && <div className={styles.scoreInputs} onDoubleClick={onEditMode}>
                <input placeholder="название команды"></input>
