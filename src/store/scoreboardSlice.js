@@ -15,7 +15,6 @@ const scoreboardSlice = createSlice({
    },
    reducers: {
       setCount(state, action) {
-         console.log('setCount.action.payload', action.payload)
          switch (action.payload){
             case 'KeyQ':
                state.leftCount = state.leftCount + 1;
@@ -41,7 +40,6 @@ const scoreboardSlice = createSlice({
          state.editMode = !state.editMode
       },
       setTitle(state, action) {
-         console.log('setTitle.action, ', action)
          switch(action.payload.id) {
             case "top_footer": {
                state.topTitle = action.payload.value;

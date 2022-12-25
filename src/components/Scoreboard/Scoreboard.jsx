@@ -6,7 +6,6 @@ import { setCount, setEditMode, setTitle } from '../../store/scoreboardSlice';
 
 const Scoreboard = () => {
    const state = useSelector(state => state.scoreboard)
-
    const dispatch = useDispatch();
 
    const handleKeyDown = (event) => {
@@ -14,7 +13,6 @@ const Scoreboard = () => {
    }
 
    const onTitleChange = (id, value) => {
-      console.log('id: ', id, 'value: ', value)
       dispatch(setTitle({ id, value }))
    }
 
@@ -71,7 +69,7 @@ const Scoreboard = () => {
 
          <div>
 
-            <Timer />
+            <Timer setEditMode={setEditMode} editMode={state.editMode} />
 
             <div className={styles.title} onDoubleClick={() => dispatch(setEditMode())}>
                {state.editMode &&
