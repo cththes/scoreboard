@@ -16,7 +16,7 @@
     "web-vitals": "^2.1.4"
   },
   "main": "public/electron.js",
-  "homepage": "./",
+  "homepage": "https://cththes.github.io/scoreboard",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -24,7 +24,9 @@
     "eject": "react-scripts eject",
     "dev": "concurrently -k \"cross-env BROWSER=none npm start\" \"npm:electron\"",
     "electron:build": "npm run build && electron-builder -c.extraMetadata.main=build/electron.js",
-    "electron": "wait-on tcp:3000 && electron ."
+    "electron": "wait-on tcp:3000 && electron .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "build": {
     "extends": null,
@@ -56,6 +58,7 @@
     "cross-env": "^7.0.3",
     "electron": "^22.0.0",
     "electron-builder": "^23.6.0",
+    "gh-pages": "^4.0.0",
     "wait-on": "^6.0.1"
   }
 }
