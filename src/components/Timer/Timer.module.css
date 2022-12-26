@@ -41,5 +41,6 @@
 }
 
 .inputs{
-   display: inline-blockl
+   display: flex;
+   justify-content: center;
 }

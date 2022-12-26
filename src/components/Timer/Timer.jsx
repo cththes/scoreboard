@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import styles from './Timer.module.css'
 import TimeInput from '../TimeInput/TimeInput'
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsCounting, handleReset, timeRuns } from '../../store/timerSlice'
+import { setIsCounting, handleReset, timeRuns} from '../../store/timerSlice'
 
 const Timer = ({ setEditMode, editMode }) => {
   const state = useSelector(state => state.timer)
@@ -36,7 +36,7 @@ const Timer = ({ setEditMode, editMode }) => {
             <span>{state.secondTime[1]}</span>
           </div>
         }
-        {editMode && 
+          {editMode && 
           <div className={styles.inputs}>
             <TimeInput id="main_minutes" placeholder="min"/>
             <TimeInput id="main_seconds" placeholder="sec"/>
