@@ -20,20 +20,25 @@ const Timer = ({ setEditMode, editMode }) => {
     }
   }, [])
 
+  const isTwoDigit = (number) => {
+    if (number < 10) number = "0" + number
+    return number
+  }
+
   return (
     <div className={styles.main} >
       <div className={styles.timer} onDoubleClick={() => dispatch(setEditMode())}>
         {!state.isTimeout ?
           <div>
-            <span>{state.firstTime[0]}</span>
+            <span>{isTwoDigit(state.firstTime[0])}</span>
             <span>:</span>
-            <span>{state.firstTime[1]}</span>
+            <span>{isTwoDigit(state.firstTime[1])}</span>
           </div>
           : 
           <div>
-            <span>{state.secondTime[0]}</span>
+            <span>{isTwoDigit(state.secondTime[0])}</span>
             <span>:</span>
-            <span>{state.secondTime[1]}</span>
+            <span>{isTwoDigit(state.secondTime[1])}</span>
           </div>
         }
           {editMode && 
