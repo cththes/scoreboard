@@ -37,14 +37,14 @@ const Timer = ({ setEditMode, editMode }) => {
           </div>
         }
           {editMode && 
-          <div className={styles.inputs}>
+          <form className={styles.inputs}>
             <TimeInput id="main_minutes" placeholder="min"/>
             <TimeInput id="main_seconds" placeholder="sec"/>
             <TimeInput id="timeout_minutes" placeholder="min"/>
             <TimeInput id="timeout_seconds" placeholder="sec"/>
             <TimeInput id="penalty_minutes" placeholder="min"/>
             <TimeInput id="penalty_seconds" placeholder="sec"/>
-          </div>}
+          </form>}
       </div>
 
       <div className={styles.buttons}>

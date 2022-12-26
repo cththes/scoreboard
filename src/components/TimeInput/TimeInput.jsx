@@ -9,7 +9,6 @@ const TimeInput = ({onEditMode, id, placeholder}) => {
    const dispatch = useDispatch();
 
    const onEditTime = (id, count) => {
-      if (count > 99) count = 99
       dispatch(setTime({ id, count }))
    }
 
@@ -21,12 +20,13 @@ const TimeInput = ({onEditMode, id, placeholder}) => {
    }
 
    return(
-         <input 
+          <input 
             className={styles.timerInput} 
             autoFocus={true}
             onChange={(event) => onEditTime(id, isNumber(event.target.value))}
             placeholder={placeholder}
             onBlur={onEditMode}
+            maxlength="2"
             onKeyPress={(e) => e.key === 'Enter' && setEditMode(false)}
          ></input>
    )

@@ -42,29 +42,30 @@ const timerSlice = createSlice({
          }
       },
       setTime(state, action) {
+         const count = action.payload.count
          switch (action.payload.id){
             case "main_minutes":{
-               state.firstTime[0] = +action.payload.count;
+               count < 99 ? state.firstTime[0] = count : state.firstTime[0] = 99
                break;
             }
             case "main_seconds":{
-               state.firstTime[1] = +action.payload.count;
+               count < 59 ? state.firstTime[1] = count : state.firstTime[1] = 59
                break;
             }
             case "timeout_minutes":{
-               state.secondTime[0] = +action.payload.count;
+               count < 99 ? state.secondTime[0] = count : state.secondTime[0] = 99
                break;
             }
             case "timeout_seconds":{
-               state.secondTime[1] = +action.payload.count;
+               count < 59 ? state.secondTime[1] = count : state.secondTime[1] = 59
                break;
             }
             case "penalty_minutes":{
-               state.penaltyTime[0] = +action.payload.count;
+               count < 99 ? state.penaltyTime[0] = count : state.penaltyTime[0] = 99
                break;
             }
             case "penalty_seconds":{
-               state.penaltyTime[1] = +action.payload.count;
+               count < 99 ? state.penaltyTime[1] = count : state.penaltyTime[1] = 99
                break;
             }
             default: return 0
