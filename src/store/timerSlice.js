@@ -12,7 +12,11 @@ const timerSlice = createSlice({
    },
    reducers: {
       setIsCounting(state) {
-         state.isCounting = !state.isCounting
+         if (!state.isTimeout & (state.firstTime[0] + state.firstTime[1] !== 0)) state.isCounting = !state.isCounting
+         if (state.isTimeout & (state.secondTime[0] + state.secondTime[1] !== 0)) state.isCounting = !state.isCounting
+      },
+      setPenalty(state){
+         state.isPenalty = !state.isPenalty
       },
       handleReset(state) {
          state.isCounting = false
@@ -30,14 +34,27 @@ const timerSlice = createSlice({
                      state.firstTime[0] -= 1
                   }; 
             } 
-            else 
+            else if (state.isTimeout)
             {
-               if (state.secondTime[0] === 0 & state.secondTime[1] === 1) state.isCounting = false
+               if (state.secondTime[0] === 0 & state.secondTime[1] === 1) {
+                  state.isCounting = false;
+               }
+               if (state.secondTime[0] === 0 & state.secondTime[0]) {
+                  state.isTimeout = false
+               }
                if (state.secondTime[1] > 0) state.secondTime[1] -= 1
                   else {
                      state.secondTime[1] = 59
                      state.secondTime[0] -= 1
                   }
+            }
+            if (state.isPenalty) {
+               if (state.penaltyTime[0] === 0 & state.penaltyTime[1] === 0) state.isPenalty = false
+               if (state.penaltyTime[1] > 0) state.penaltyTime[1] -= 1
+                  else {
+                     state.penaltyTime[1] = 59
+                     state.penaltyTime[0] -= 1
+                  }; 
             }
          }
       },
@@ -65,7 +82,7 @@ const timerSlice = createSlice({
                break;
             }
             case "penalty_seconds":{
-               count < 99 ? state.penaltyTime[1] = count : state.penaltyTime[1] = 99
+               count < 99 ? state.penaltyTime[1] = count : state.penaltyTime[1] = 59
                break;
             }
             default: return 0
@@ -75,4 +92,4 @@ const timerSlice = createSlice({
 })
 
 export default timerSlice.reducer
-export const {setIsCounting, handleReset, timeRuns, setTime} = timerSlice.actions
+export const {setIsCounting, handleReset, timeRuns, setTime, setPenalty} = timerSlice.actions
