@@ -1,13 +1,27 @@
 import React from 'react'
 import styles from './Score.module.scss'
-import { useDispatch, useSelector } from 'react-redux';
-import { setEditMode } from '../../../store/scoreboardSlice';
+import { useDispatch} from 'react-redux';
+import { setEditMode, setCount } from '../../../store/scoreboardSlice';
 
 const Score = ({count, teamTitle, playerTitle, onTitleChange, editMode, team}) => {
+
+   const dispatch = useDispatch();
+
+   const handleKeyDown = (event) => {
+      !editMode && dispatch(setCount(event.nativeEvent.code))
+   }
+
+   const onPlusClick = () => {
+      team === "left_team" ? dispatch(setCount("KeyQ")) : dispatch(setCount("KeyE"))}
+
+   const onMinusClick = () => {
+      team === "left_team" ? dispatch(setCount("KeyA")) : dispatch(setCount("KeyD"))
+   }
+
    let player
    team === "left_team" ? player = "left_player" : player = "right_player"
    return(
-      <div>
+      <div onKeyDown={(event) => handleKeyDown(event)} tabIndex={0}>
          <div className={team === "left_team" ? styles.leftCount : styles.rightCount} onDoubleClick={() => dispatch(setEditMode())}>
             {
                count < 10 ?
@@ -49,8 +63,8 @@ const Score = ({count, teamTitle, playerTitle, onTitleChange, editMode, team}) =
 
             </div>}
             <div className={styles.buttons}>
-               <button onClick={() => dispatch(setCount("KeyQ"))}>+</button>
-               <button onClick={() => dispatch(setCount("KeyA"))}>-</button>
+               <button onClick={onPlusClick}>+</button>
+               <button onClick={onMinusClick}>-</button>
                <div id="resetBtn" className={styles.resetBtn}>
                   <button onClick={() => dispatch(setCount("KeyR"))}>Reset</button>
                </div>

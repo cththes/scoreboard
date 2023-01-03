@@ -2,31 +2,25 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Timer from '../Timer/Timer';
 import styles from "./Scoreboard.module.scss"
-import { setCount, setEditMode, setTitle } from '../../store/scoreboardSlice';
+import { setEditMode, setTitle, setCount } from '../../store/scoreboardSlice';
 import Score from './Score/Score';
 
 const Scoreboard = () => {
    const state = useSelector(state => state.scoreboard)
    const dispatch = useDispatch();
 
-   const handleKeyDown = (event) => {
-      !state.editMode && dispatch(setCount(event.nativeEvent.code))
-   }
-
    const onTitleChange = (id, value) => {
       dispatch(setTitle({ id, value }))
    }
 
    return (
-      <div className={styles.scoreBoard} onKeyDown={(event) => handleKeyDown(event)} tabIndex={0}>
+      <div className={styles.scoreBoard}>
          <Score count={state.leftCount}
                teamTitle={state.leftTeamTitle} 
                playerTitle={state.leftPlayerTitle} 
-               onTitleChange={onTitleChange} 
-               setCount={setCount} 
+               onTitleChange={onTitleChange}  
                editMode={state.editMode}
                team="left_team"/>
-         <div>
             <Timer setEditMode={setEditMode} editMode={state.editMode} />
 
             <div className={styles.title} onDoubleClick={() => dispatch(setEditMode())}>
@@ -62,13 +56,11 @@ const Scoreboard = () => {
                   </h1>
                </div>
             </div>
-         </div>
 
          <Score count={state.rightCount}
                teamTitle={state.rightTeamTitle} 
                playerTitle={state.rightPlayerTitle} 
                onTitleChange={onTitleChange} 
-               setCount={setCount} 
                editMode={state.editMode} 
                team="right_team"/>
       </div>
