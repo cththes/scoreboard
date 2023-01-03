@@ -55,8 +55,10 @@ const timerSlice = createSlice({
                if (state.penaltyTime[0] === 0 & state.penaltyTime[1] === 0) state.isPenalty = false
                if (state.penaltyTime[1] > 0) state.penaltyTime[1] -= 1
                   else {
-                     state.penaltyTime[1] = 59
-                     state.penaltyTime[0] -= 1
+                     if (state.penaltyTime[0] > 0){
+                        state.penaltyTime[1] = 59
+                        state.penaltyTime[0] -= 1
+                     }
                   }; 
             }
          }

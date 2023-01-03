@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import styles from './Timer.module.css'
-import TimeInput from '../TimeInput/TimeInput'
+import TimeInput from './TimeInput/TimeInput'
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsCounting, handleReset, timeRuns, setPenalty} from '../../store/timerSlice'
-import TimeViewer from '../TimeViewer/TimeViewer';
+import TimeViewer from './TimeViewer/TimeViewer';
 
 const Timer = ({ setEditMode, editMode }) => {
 

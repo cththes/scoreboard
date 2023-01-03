@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './TimeInput.module.css'
 import {useDispatch} from 'react-redux';
-import { setTime } from '../../store/timerSlice';
+import { setTime } from '../../../store/timerSlice';
+import { setEditMode } from '../../../store/scoreboardSlice';
 
 
 const TimeInput = ({onEditMode, id, placeholder, value}) => {
@@ -21,6 +22,7 @@ const TimeInput = ({onEditMode, id, placeholder, value}) => {
 
    return(
           <input 
+            onDoubleClick={() => dispatch(setEditMode())}
             className={styles.timerInput} 
             autoFocus={true}
             value={value}

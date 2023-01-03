@@ -1,0 +1,118 @@
+.scoreBoard{
+   display:grid;
+   grid-template-columns: 24vw 1fr 24vw;
+   height:100vh;
+   max-height:1080px;
+   background-color: #f0f2f5;
+}
+
+.leftCount{
+   display: grid;
+   width: 23vw;
+   grid-template-rows: 78%;
+   margin-left: 3px;
+   margin-right: auto;
+   margin-top:3vh;
+   background-color: #0d214f;
+   border-radius: 7%;
+   max-height:87vh;
+}
+
+.rightCount{
+   display: grid;
+   grid-template-rows: 78%;
+   width: 23.2vw;
+   margin-left:8px;
+   margin-right: auto;
+   margin-top:3vh;
+   background-color: #8f0100;
+   border-radius: 7%;
+   max-height:87vh;
+}
+
+.leftCount button, .rightCount button {
+   
+   width: 6.5vw;
+   height: 7.5vh;
+   padding: 5px;
+   margin:5px;
+
+   cursor: pointer;
+   transition: all 0.25s;
+
+   font-size:calc(2vh + 2vw);
+
+   border-radius: 5px;
+   border: 0;
+}
+
+.buttons{
+   max-height:150px;
+   display:flex;
+   align-items: flex-end;
+   justify-content: center;
+}
+
+.leftCount button{
+   color: #0d214f;
+   background-color: #0d214f;
+}
+
+.leftCount button:hover{
+   color: #0d214f;
+   background-color: #f0f2f5;
+}
+
+.rightCount button{
+   color: #8f0100;
+   background-color: #8f0100;
+}
+
+.rightCount button:hover{
+   color: #8f0100;
+   background-color: #f0f2f5;
+}
+
+.resetBtn button{
+   font-size:calc(1vh + 1vw);
+}
+
+.countNumber{
+   display:flex;
+   align-items: flex-start;
+   justify-content: center;
+   color: #f0f2f5;
+   font-size:calc(25vh + 15vw);
+   position: relative;
+   bottom: 60px;
+}
+
+.countNumberSmall{
+   color: #f0f2f5;
+   font-size:calc(15vh + 12vw);
+   justify-content: center;
+}
+
+.title{
+   position:absolute;
+   bottom: 20px;;
+   margin-left: auto;
+   margin-right: auto;
+   left: 27%;
+   right:25.5%;
+   text-align: center;
+   min-height: 80px;
+}
+
+.titleH1{
+   color: #8f0100;
+   font-size:calc(2.2vw + 4.4vh);
+   max-height: 120px;
+   margin: 0;
+   white-space: nowrap;
+}
+
+.countInputs{
+   
+}
+
