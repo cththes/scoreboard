@@ -38,16 +38,17 @@ const timerSlice = createSlice({
             } 
             else if (state.isTimeout)
             {
-               if (state.secondTime[0] === 0 & state.secondTime[1] === 1) {
+               if (state.secondTime[0] === 0 & state.secondTime[1] === 0) {
                   state.isCounting = false;
-               }
-               if (state.secondTime[0] === 0 & state.secondTime[0]) {
                   state.isTimeout = false
+                  console.log('state.isTimeout =', state.isTimeout)
                }
                if (state.secondTime[1] > 0) state.secondTime[1] -= 1
                   else {
-                     state.secondTime[1] = 59
-                     state.secondTime[0] -= 1
+                     if (state.secondTime[0] > 0){
+                        state.secondTime[1] = 59
+                        state.secondTime[0] -= 1
+                    }
                   }
             }
             if (state.isPenalty) {

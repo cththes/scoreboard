@@ -27,7 +27,7 @@ const TimeInput = ({onEditMode, id, placeholder, value}) => {
             onChange={(event) => onEditTime(id, isNumber(event.target.value))}
             placeholder={placeholder}
             onBlur={onEditMode}
-            maxlength="2"
+            maxLength="2"
             onKeyPress={(e) => e.key === 'Enter' && setEditMode(false)}
          ></input>
    )
