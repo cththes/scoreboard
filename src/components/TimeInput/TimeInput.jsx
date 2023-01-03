@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import { setTime } from '../../store/timerSlice';
 
 
-const TimeInput = ({onEditMode, id, placeholder}) => {
+const TimeInput = ({onEditMode, id, placeholder, value}) => {
 
    const dispatch = useDispatch();
 
@@ -23,6 +23,7 @@ const TimeInput = ({onEditMode, id, placeholder}) => {
           <input 
             className={styles.timerInput} 
             autoFocus={true}
+            value={value}
             onChange={(event) => onEditTime(id, isNumber(event.target.value))}
             placeholder={placeholder}
             onBlur={onEditMode}

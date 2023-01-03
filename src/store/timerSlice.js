@@ -30,8 +30,10 @@ const timerSlice = createSlice({
                if (state.firstTime[0] === 0 & state.firstTime[1] === 0) state.isTimeout = true
                if (state.firstTime[1] > 0) state.firstTime[1] -= 1
                   else {
-                     state.firstTime[1] = 59
-                     state.firstTime[0] -= 1
+                     if (state.firstTime[0] > 0){
+                        state.firstTime[1] = 59
+                        state.firstTime[0] -= 1
+                     }
                   }; 
             } 
             else if (state.isTimeout)

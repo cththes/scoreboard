@@ -32,12 +32,12 @@ const Timer = ({ setEditMode, editMode }) => {
       <div className={styles.inputs}>
       {editMode && 
         <form>
-          <TimeInput id="main_minutes" placeholder="min"/>
-          <TimeInput id="main_seconds" placeholder="sec"/>
-          <TimeInput id="timeout_minutes" placeholder="min"/>
-          <TimeInput id="timeout_seconds" placeholder="sec"/>
-          <TimeInput id="penalty_minutes" placeholder="min"/>
-          <TimeInput id="penalty_seconds" placeholder="sec"/>
+          <TimeInput value={state.firstTime[0]} id="main_minutes" placeholder="min"/>
+          <TimeInput value={state.firstTime[1]} id="main_seconds" placeholder="sec"/>
+          <TimeInput value={state.secondTime[0]} id="timeout_minutes" placeholder="min"/>
+          <TimeInput value={state.secondTime[1]} id="timeout_seconds" placeholder="sec"/>
+          <TimeInput value={state.penaltyTime[0]} id="penalty_minutes" placeholder="min"/>
+          <TimeInput value={state.penaltyTime[1]} id="penalty_seconds" placeholder="sec"/>
         </form>}
       </div>
 
