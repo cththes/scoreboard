@@ -3,7 +3,7 @@ import styles from './Score.module.scss'
 import { useDispatch} from 'react-redux';
 import { setEditMode, setCount } from '../../../store/scoreboardSlice';
 
-const Score = ({count, teamTitle, playerTitle, onTitleChange, editMode, team}) => {
+const Score = ({count, teamTitle, playerTitle, onTitleChange, editMode, team, player}) => {
 
    const dispatch = useDispatch();
 
@@ -18,8 +18,8 @@ const Score = ({count, teamTitle, playerTitle, onTitleChange, editMode, team}) =
       team === "left_team" ? dispatch(setCount("KeyA")) : dispatch(setCount("KeyD"))
    }
 
-   let player
-   team === "left_team" ? player = "left_player" : player = "right_player"
+   // let player
+   // team === "left_team" ? player = "left_player" : player = "right_player"
    return(
       <div onKeyDown={(event) => handleKeyDown(event)} tabIndex={0}>
          <div className={team === "left_team" ? styles.leftCount : styles.rightCount} onDoubleClick={() => dispatch(setEditMode())}>
@@ -29,9 +29,9 @@ const Score = ({count, teamTitle, playerTitle, onTitleChange, editMode, team}) =
                      <div className={styles.countNumber}>
                         {count}
                      </div>
-                     <div className={styles.countTitles}>
-                        <h3>{teamTitle}</h3>
-                        <h3>{playerTitle}</h3>
+                     <div className={styles.teamTitles}>
+                        <h2>{"Team: " + teamTitle}</h2>
+                        <h2>{"Player: " + playerTitle}</h2>
                      </div>
                   </div>
                   :
@@ -39,25 +39,25 @@ const Score = ({count, teamTitle, playerTitle, onTitleChange, editMode, team}) =
                      <div className={styles.countNumberSmall}>
                         {count}
                      </div>
-                     <div className={styles.countTitles}>
-                        <h3>{teamTitle}</h3>
-                        <h3>{playerTitle}</h3>
+                     <div className={styles.teamTitles}>
+                        <h2>{"Team: " + teamTitle}</h2>
+                        <h2>{"Player: " + playerTitle}</h2>
                      </div>
                   </div>
             }
 
 
 
-            {editMode && <div className={styles.countInputs} onDoubleClick={() => dispatch(setEditMode())}>
+            {editMode && <div className={styles.titleInputs} onDoubleClick={() => dispatch(setEditMode())}>
                <input
                   placeholder="название команды"
-                  onChange={(event) => onTitleChange({team}, event.target.value)}
+                  onChange={(event) => onTitleChange(team, event.target.value)}
                   value={teamTitle}
                   ></input>
 
                <input 
                   placeholder="имя игрока"
-                  onChange={(event) => onTitleChange({player}, event.target.value)}
+                  onChange={(event) => onTitleChange(player, event.target.value)}
                   value={playerTitle}
                ></input>
 
