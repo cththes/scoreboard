@@ -6,6 +6,7 @@ const timerSlice = createSlice({
       firstTime: [0, 0],
       secondTime: [0, 0],
       penaltyTime: [0, 0],
+      resetTime: [[],[]],
       isCounting: false,
       isTimeout: false,
       isPenalty: false,
@@ -20,8 +21,8 @@ const timerSlice = createSlice({
       },
       handleReset(state) {
          state.isCounting = false
-         state.firstTime = [0, 0]
-         state.secondTime = [0, 0]
+         state.firstTime = state.resetTime[0]
+         state.secondTime = state.resetTime[1]
       },
       timeRuns(state) {
          if (state.isCounting) {
@@ -68,18 +69,22 @@ const timerSlice = createSlice({
          switch (action.payload.id){
             case "main_minutes":{
                count < 99 ? state.firstTime[0] = count : state.firstTime[0] = 99
+               state.resetTime[0][0]= state.firstTime[0]
                break;
             }
             case "main_seconds":{
                count < 59 ? state.firstTime[1] = count : state.firstTime[1] = 59
+               state.resetTime[0][1] = state.firstTime[1]
                break;
             }
             case "timeout_minutes":{
                count < 99 ? state.secondTime[0] = count : state.secondTime[0] = 99
+               state.resetTime[1][0] = state.secondTime[0]
                break;
             }
             case "timeout_seconds":{
                count < 59 ? state.secondTime[1] = count : state.secondTime[1] = 59
+               state.resetTime[1][1] = state.secondTime[1]
                break;
             }
             case "penalty_minutes":{
