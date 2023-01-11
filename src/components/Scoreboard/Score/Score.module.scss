@@ -1,25 +1,25 @@
 .leftCount{
    display: grid;
    width: 23vw;
-   grid-template-rows: 78%;
+   grid-template-rows: 70%;
    margin-left: 3px;
    margin-right: auto;
    margin-top:3vh;
    background-color: #0d214f;
    border-radius: 7%;
-   max-height:87vh;
+   height:87vh;
 }
 
 .rightCount{
    display: grid;
-   grid-template-rows: 78%;
+   grid-template-rows: 70%;
    width: 23.2vw;
    margin-left:8px;
    margin-right: auto;
    margin-top:3vh;
    background-color: #8f0100;
    border-radius: 7%;
-   max-height:87vh;
+   height:87vh;
 }
 
 .leftCount button, .rightCount button {
@@ -43,6 +43,7 @@
    display:flex;
    align-items: flex-end;
    justify-content: center;
+   bottom:15%;
 }
 
 .leftCount button{
@@ -93,7 +94,15 @@
 
 .teamTitles{
    position: relative;
-   bottom:50px;
+   display:flex;
+   align-items: flex-start;
+   flex-direction:column;
+   bottom:34%;
    color:white;
+}
+
+h2{
+   margin-top:5px;
+   margin-left:5px;
 }
 

@@ -1,7 +1,7 @@
 .main{
    display: grid;
    grid-template-rows: 25% 20% 15% 10%;
-   height: 900px;
+   height: 92%;
    /* align-items: center;
    flex-direction: column;
    gap: 20px;*/
