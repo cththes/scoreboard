@@ -5,7 +5,7 @@ import { setTime } from '../../../store/timerSlice';
 import { setEditMode } from '../../../store/scoreboardSlice';
 
 
-const TimeInput = ({onEditMode, id, placeholder, value}) => {
+function TimeInput ({onEditMode, id, placeholder, value}) {
 
    const dispatch = useDispatch();
 

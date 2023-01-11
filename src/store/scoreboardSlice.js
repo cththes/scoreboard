@@ -11,7 +11,8 @@ const scoreboardSlice = createSlice({
       leftTeamTitle: "",
       leftPlayerTitle: "",
       rightTeamTitle: "",
-      rightPlayerTitle: ""
+      rightPlayerTitle: "",
+      scoreData:[[],[]]
    },
    reducers: {
       setCount(state, action) {
@@ -68,8 +69,12 @@ const scoreboardSlice = createSlice({
             default: return 0
          }
       },
+      recordScore(state) {
+         state.scoreData[0].push(state.leftCount)
+         state.scoreData[1].push(state.rightCount)
+      }
    }
 })
 
 export default scoreboardSlice.reducer
-export const {setCount, setEditMode, setTitle} = scoreboardSlice.actions
+export const {setCount, setEditMode, setTitle, recordScore} = scoreboardSlice.actions

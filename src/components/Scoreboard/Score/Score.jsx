@@ -3,7 +3,7 @@ import styles from './Score.module.scss'
 import { useDispatch} from 'react-redux';
 import { setEditMode, setCount } from '../../../store/scoreboardSlice';
 
-const Score = ({count, teamTitle, playerTitle, onTitleChange, editMode, team, player}) => {
+function Score ({count, teamTitle, playerTitle, onTitleChange, editMode, team, player}) {
 
    const dispatch = useDispatch();
 
@@ -18,8 +18,6 @@ const Score = ({count, teamTitle, playerTitle, onTitleChange, editMode, team, pl
       team === "left_team" ? dispatch(setCount("KeyA")) : dispatch(setCount("KeyD"))
    }
 
-   // let player
-   // team === "left_team" ? player = "left_player" : player = "right_player"
    return(
       <div onKeyDown={(event) => handleKeyDown(event)} tabIndex={0}>
          <div className={team === "left_team" ? styles.leftCount : styles.rightCount} onDoubleClick={() => dispatch(setEditMode())}>

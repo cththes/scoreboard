@@ -6,10 +6,11 @@ const timerSlice = createSlice({
       firstTime: [0, 0],
       secondTime: [0, 0],
       penaltyTime: [0, 0],
-      resetTime: [[],[]],
+      resetTime: [[0],[0]],
       isCounting: false,
       isTimeout: false,
       isPenalty: false,
+      isRecordScore: false,
    },
    reducers: {
       setIsCounting(state) {
@@ -28,7 +29,10 @@ const timerSlice = createSlice({
          if (state.isCounting) {
             if (!state.isTimeout)
             {
-               if (state.firstTime[0] === 0 & state.firstTime[1] === 0) state.isTimeout = true
+               if (state.firstTime[0] === 0 & state.firstTime[1] === 0) {
+                  state.isTimeout = true
+                  state.isRecordScore = true
+               }
                if (state.firstTime[1] > 0) state.firstTime[1] -= 1
                   else {
                      if (state.firstTime[0] > 0){
@@ -42,7 +46,6 @@ const timerSlice = createSlice({
                if (state.secondTime[0] === 0 & state.secondTime[1] === 0) {
                   state.isCounting = false;
                   state.isTimeout = false
-                  console.log('state.isTimeout =', state.isTimeout)
                }
                if (state.secondTime[1] > 0) state.secondTime[1] -= 1
                   else {
@@ -97,9 +100,12 @@ const timerSlice = createSlice({
             }
             default: return 0
          }
+      },
+      clearIsRecordScore(state){
+         state.isRecordScore = false
       }
    }
 })
 
 export default timerSlice.reducer
-export const {setIsCounting, handleReset, timeRuns, setTime, setPenalty} = timerSlice.actions
+export const {setIsCounting, handleReset, timeRuns, setTime, setPenalty, clearIsRecordScore} = timerSlice.actions

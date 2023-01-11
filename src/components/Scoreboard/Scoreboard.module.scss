@@ -1,7 +1,7 @@
 .scoreBoard{
    display:grid;
    grid-template-columns: 24vw 1fr 24vw;
-   height:100vh;
+   height:90vh;
    max-height:1080px;
    background-color: #f0f2f5;
 }
@@ -23,6 +23,10 @@
    max-height: 120px;
    margin: 0;
    white-space: nowrap;
+}
+
+.scoreData{
+   display:flex;
 }
 
 

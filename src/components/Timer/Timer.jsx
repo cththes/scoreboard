@@ -2,10 +2,11 @@ import React, { useEffect } from 'react'
 import styles from './Timer.module.css'
 import TimeInput from './TimeInput/TimeInput'
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsCounting, handleReset, timeRuns, setPenalty} from '../../store/timerSlice'
+import { setIsCounting, handleReset, timeRuns, setPenalty, clearIsRecordScore} from '../../store/timerSlice'
 import TimeViewer from './TimeViewer/TimeViewer';
+import { recordScore } from '../../store/scoreboardSlice';
 
-const Timer = ({ setEditMode, editMode }) => {
+function Timer ({ setEditMode, editMode }) {
 
   const state = useSelector(state => state.timer)
   const dispatch = useDispatch();
@@ -16,6 +17,11 @@ const Timer = ({ setEditMode, editMode }) => {
       clearInterval(interval)
     }
   }, [])
+
+  if (state.isRecordScore) {
+    dispatch(recordScore())
+    dispatch(clearIsRecordScore())
+  }
 
   return (
     <div className={styles.main}>
