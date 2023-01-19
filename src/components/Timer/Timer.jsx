@@ -5,11 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsCounting, handleReset, timeRuns, setPenalty, clearIsRecordScore} from '../../store/timerSlice'
 import TimeViewer from './TimeViewer/TimeViewer';
 import { recordScore } from '../../store/scoreboardSlice';
+import useSound from 'use-sound';
+import gong from "../../assets/gong.mp3"
 
 function Timer ({ setEditMode, editMode }) {
 
   const state = useSelector(state => state.timer)
   const dispatch = useDispatch();
+  const [play] = useSound(gong)
 
   useEffect(() => {
     const interval = setInterval(() => dispatch(timeRuns()), 1000)
@@ -21,6 +24,11 @@ function Timer ({ setEditMode, editMode }) {
   if (state.isRecordScore) {
     dispatch(recordScore())
     dispatch(clearIsRecordScore())
+  }
+
+  const onStartClick = () => {
+    dispatch(setIsCounting())
+    play()
   }
 
   return (
@@ -51,7 +59,7 @@ function Timer ({ setEditMode, editMode }) {
         {state.isCounting ? (
           <button onClick={() => dispatch(setIsCounting())}>Stop</button>
         ) : (
-          <button onClick={() => dispatch(setIsCounting())}>Start</button>
+          <button onClick={onStartClick}>Start</button>
         )}
         <button onClick={() => dispatch(handleReset())}>Reset</button>
         <button onClick={() => dispatch(setPenalty())}>Penalty</button>
