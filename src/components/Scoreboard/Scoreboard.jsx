@@ -13,9 +13,6 @@ function Scoreboard() {
       dispatch(setTitle({ id, value }))
    }
 
-   console.log('state.scoreData[0]', state.scoreData[0])
-   console.log('state.scoreData[1]', state.scoreData[1])
-
    return (
       <div>
          <div className={styles.scoreBoard}>
@@ -68,8 +65,15 @@ function Scoreboard() {
                player="right_player" />
          </div>
 
-         <h2 className={styles.scoreData}>{state.scoreData[0].map(sd => <div>{sd + '.'}</div>)}</h2>
-         <h2 className={styles.scoreData}>{state.scoreData[1].map(sd => <div>{sd + '.'}</div>)}</h2>
+         <div className={styles.scoreData}>
+            <div className={styles.scoreDataLeft}>
+               <h2>{state.leftPlayerTitle !== "" && state.leftPlayerTitle}</h2>
+               <h2 className={styles.scoreDataH2}>{state.scoreData[0].map(sd => <div>{sd + '.'}</div>)}</h2>
+            </div>
+            <div className={styles.scoreDataRight}>
+               <h2>{state.rightPlayerTitle}</h2>
+               <h2 className={styles.scoreDataH2}>{state.scoreData[1].map(sd => <div>{sd + '.'}</div>)}</h2></div>
+         </div>
       </div>
    )
 }

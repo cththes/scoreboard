@@ -2,9 +2,6 @@
    display: grid;
    grid-template-rows: 25% 20% 15% 10%;
    height: 92%;
-   /* align-items: center;
-   flex-direction: column;
-   gap: 20px;*/
 }
 
 .penaltyTimer{
@@ -13,9 +10,6 @@
    font-size:100px;
    position: relative;
    top:-170px;
-   /* font-size:calc(12.5vh + 6.5vw); */
-   /* position: relative;
-   top: 100px; */
 }
 
 .timer{
@@ -24,21 +18,15 @@
    font-size:140px;   
    position: relative;
    top:-300px;
-   /* position: absolute; */
-   /* bottom: 200px; */
-   /* font-size:calc(12.5vh + 6.5vw); */
-   /* font-size:calc(20.5vh + 10.5vw); */
+   height:64vh;
 }
 
 .inputs{
    justify-content: center;
-   margin-top:30px;
+   margin-top:20px;
 }
 
 .buttons{
-   /* display: flex;
-   position: absolute;
-   top:65%; */
    gap: 10px;
 }
 
@@ -46,6 +34,7 @@
    width: 100px;
    height: 60px;
    padding: 5px;
+   margin-top:5px;
 
    color: #8f0100;
 

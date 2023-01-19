@@ -20,14 +20,14 @@ function Score ({count, teamTitle, playerTitle, onTitleChange, editMode, team, p
 
    return(
       <div onKeyDown={(event) => handleKeyDown(event)} tabIndex={0}>
-         <div className={team === "left_team" ? styles.leftCount : styles.rightCount} onDoubleClick={() => dispatch(setEditMode())}>
+         <div className={team === "left_team" ? styles.leftCount : styles.rightCount}>
             {
                count < 10 ?
                   <div>
                      <div className={styles.countNumber}>
                         {count}
                      </div>
-                     <div className={styles.teamTitles}>
+                     <div className={styles.teamTitles} onDoubleClick={() => dispatch(setEditMode())}>
                         <h2>{"Team: " + teamTitle}</h2>
                         <h2>{"Player: " + playerTitle}</h2>
                      </div>

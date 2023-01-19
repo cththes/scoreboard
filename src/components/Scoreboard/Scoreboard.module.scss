@@ -25,8 +25,22 @@
    white-space: nowrap;
 }
 
+
 .scoreData{
+   display:flex;
+   font-size:calc(1.2vw + 1.2vh);
+}
+
+.scoreDataLeft{
+   display:flex;
+   width:77%;
+}
+
+.scoreDataRight{
    display:flex;
 }
 
+.scoreDataH2{
+   display:flex;
+}
 
