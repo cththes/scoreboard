@@ -1,9 +1,15 @@
 import React from 'react'
 import styles from "./TimeViewer.module.scss"
 
-function TimeViewer({ minutes, seconds, isTimeout }) {
+interface TimerViewerProps {
+   minutes: number,
+   seconds: number,
+   isTimeout: boolean
+ }
 
-   const isTwoDigit = (number) => {
+const TimeViewer:React.FC<TimerViewerProps> = ({ minutes, seconds, isTimeout }) => {
+
+   const isTwoDigit = (number: any) => {
       if (number < 10) number = "0" + number
       return number
    }

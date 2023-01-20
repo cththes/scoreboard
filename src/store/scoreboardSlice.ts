@@ -1,22 +1,44 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+
+type ScoreDataType = Array<number>
+
+type ScoreboardState = {
+   leftCount: number;
+   rightCount: number;
+   editMode: boolean;
+   topTitle: string;
+   bottomTitle: string;
+   leftTeamTitle: string;
+   leftPlayerTitle: string;
+   rightTeamTitle: string;
+   rightPlayerTitle: string;
+   scoreData: Array<ScoreDataType>;
+}
+
+const initialState: ScoreboardState = {
+   leftCount: 0,
+   rightCount: 0,
+   editMode: false,
+   topTitle: "",
+   bottomTitle: "BUGACHIEV - SPORTS",
+   leftTeamTitle: "",
+   leftPlayerTitle: "",
+   rightTeamTitle: "",
+   rightPlayerTitle: "",
+   scoreData: [[], []]
+}
+
+type SetTitlePayloadType = {
+   id: string;
+   value: any;
+}
 
 const scoreboardSlice = createSlice({
    name: "scoreboard",
-   initialState: {
-      leftCount: 0,
-      rightCount: 0,
-      editMode: false,
-      topTitle: "",
-      bottomTitle: "BUGACHIEV - SPORTS",
-      leftTeamTitle: "",
-      leftPlayerTitle: "",
-      rightTeamTitle: "",
-      rightPlayerTitle: "",
-      scoreData:[[],[]]
-   },
+   initialState,
    reducers: {
-      setCount(state, action) {
-         switch (action.payload){
+      setCount(state, action: PayloadAction<string>) {
+         switch (action.payload) {
             case 'KeyQ':
                state.leftCount = state.leftCount + 1;
                break;
@@ -30,18 +52,18 @@ const scoreboardSlice = createSlice({
                if (state.rightCount > 0) state.rightCount = state.rightCount - 1;
                break;
             case 'KeyR':
-                  state.leftCount = 0,
+               state.leftCount = 0,
                   state.rightCount = 0
-                  break;
+               break;
             default:
-               return 0
+               return 
          }
       },
       setEditMode(state) {
          state.editMode = !state.editMode
       },
-      setTitle(state, action) {
-         switch(action.payload.id) {
+      setTitle(state, action: PayloadAction<SetTitlePayloadType>) {
+         switch (action.payload.id) {
             case "top_footer": {
                state.topTitle = action.payload.value;
                break;
@@ -66,7 +88,7 @@ const scoreboardSlice = createSlice({
                state.rightPlayerTitle = action.payload.value;
                break;
             }
-            default: return 0
+            default: return 
          }
       },
       recordScore(state) {
@@ -77,4 +99,4 @@ const scoreboardSlice = createSlice({
 })
 
 export default scoreboardSlice.reducer
-export const {setCount, setEditMode, setTitle, recordScore} = scoreboardSlice.actions
+export const { setCount, setEditMode, setTitle, recordScore } = scoreboardSlice.actions

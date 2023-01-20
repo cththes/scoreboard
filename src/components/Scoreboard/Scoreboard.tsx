@@ -1,15 +1,15 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import Timer from '../Timer/Timer';
 import styles from "./Scoreboard.module.scss"
 import { setEditMode, setTitle } from '../../store/scoreboardSlice';
 import Score from './Score/Score';
 
-function Scoreboard() {
-   const state = useSelector(state => state.scoreboard)
-   const dispatch = useDispatch();
+const Scoreboard = () => {
+   const state = useAppSelector(state => state.scoreboard)
+   const dispatch = useAppDispatch();
 
-   const onTitleChange = (id, value) => {
+   const onTitleChange = (id: string, value: string) => {
       dispatch(setTitle({ id, value }))
    }
 
@@ -34,7 +34,7 @@ function Scoreboard() {
                            onDoubleClick={() => dispatch(setEditMode())}
                            onChange={(event) => onTitleChange("top_footer", event.target.value)}
                            value={state.topTitle}
-                           maxLength="20"
+                           maxLength={20}
                            onKeyPress={(e) => {
                               e.key === 'Enter' && dispatch(setEditMode())
                            }}

@@ -1,19 +1,26 @@
 import React from 'react'
-import styles from './TimeInput.module.css'
-import {useDispatch} from 'react-redux';
+import { useAppDispatch } from '../../../hooks';
 import { setTime } from '../../../store/timerSlice';
 import { setEditMode } from '../../../store/scoreboardSlice';
+import styles from './TimeInput.module.css'
 
+interface TimeInputProps {
+   id: string,
+   value: any,
+   placeholder: string
+}
 
-function TimeInput ({onEditMode, id, placeholder, value}) {
+const TimeInput: React.FC<TimeInputProps> = ({id, value, placeholder}) => {
 
-   const dispatch = useDispatch();
+   const dispatch = useAppDispatch();
 
-   const onEditTime = (id, count) => {
+   const onEditTime = (id: string, count: any) => {
+      console.log('id:', id)
+      console.log('count:', count)
       dispatch(setTime({ id, count }))
    }
 
-   const isNumber = (number) => {
+   const isNumber = (number: any) => {
       for (let i = 0; i < number.length; i++){
          if (number.charCodeAt(i) < 48 || number.charCodeAt(i) > 57) number[i] = 0
       }
@@ -27,10 +34,9 @@ function TimeInput ({onEditMode, id, placeholder, value}) {
             autoFocus={true}
             value={value}
             onChange={(event) => onEditTime(id, isNumber(event.target.value))}
+            maxLength={2}
             placeholder={placeholder}
-            onBlur={onEditMode}
-            maxLength="2"
-            onKeyPress={(e) => e.key === 'Enter' && setEditMode(false)}
+            onKeyPress={(e) => e.key === 'Enter' && setEditMode()}
          ></input>
    )
 }

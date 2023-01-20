@@ -1,17 +1,22 @@
 import React, { useEffect } from 'react'
 import styles from './Timer.module.css'
 import TimeInput from './TimeInput/TimeInput'
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setIsCounting, handleReset, timeRuns, setPenalty, clearIsRecordScore} from '../../store/timerSlice'
 import TimeViewer from './TimeViewer/TimeViewer';
 import { recordScore } from '../../store/scoreboardSlice';
 import useSound from 'use-sound';
 import gong from "../../assets/gong.mp3"
 
-function Timer ({ setEditMode, editMode }) {
+interface TimerProps {
+  setEditMode: any,
+  editMode: boolean
+}
 
-  const state = useSelector(state => state.timer)
-  const dispatch = useDispatch();
+const Timer:React.FC<TimerProps> = ({ setEditMode, editMode }) => {
+
+  const state = useAppSelector(state => state.timer)
+  const dispatch = useAppDispatch();
   const [play] = useSound(gong)
 
   useEffect(() => {
@@ -34,7 +39,7 @@ function Timer ({ setEditMode, editMode }) {
   return (
     <div className={styles.main}>
       <div className={styles.penaltyTimer}>
-        {state.isPenalty && <TimeViewer minutes={state.penaltyTime[0]} seconds={state.penaltyTime[1]}/>}
+        {state.isPenalty && <TimeViewer isTimeout={state.isTimeout} minutes={state.penaltyTime[0]} seconds={state.penaltyTime[1]}/>}
       </div>
 
       <div className={styles.timer} onDoubleClick={() => dispatch(setEditMode())}>

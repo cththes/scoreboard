@@ -1,13 +1,23 @@
 import React from 'react'
 import styles from './Score.module.scss'
-import { useDispatch} from 'react-redux';
+import { useAppDispatch } from '../../../hooks';
 import { setEditMode, setCount } from '../../../store/scoreboardSlice';
 
-function Score ({count, teamTitle, playerTitle, onTitleChange, editMode, team, player}) {
+interface ScoreProps {
+   count: any,
+   teamTitle: string,
+   playerTitle:string,
+   onTitleChange: any,
+   editMode: boolean,
+   team: string,
+   player: string,
+}
 
-   const dispatch = useDispatch();
+const Score: React.FC<ScoreProps> = ({count, teamTitle, playerTitle, onTitleChange, editMode, team, player}) => {
 
-   const handleKeyDown = (event) => {
+   const dispatch = useAppDispatch();
+
+   const handleKeyDown = (event: any) => {
       !editMode && dispatch(setCount(event.nativeEvent.code))
    }
 
