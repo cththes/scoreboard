@@ -39,8 +39,8 @@ function Timer ({ setEditMode, editMode }) {
 
       <div className={styles.timer} onDoubleClick={() => dispatch(setEditMode())}>
         {!state.isTimeout ?
-        <TimeViewer minutes={state.firstTime[0]} seconds={state.firstTime[1]} /> :
-        <TimeViewer minutes={state.secondTime[0]} seconds={state.secondTime[1]} />
+        <TimeViewer minutes={state.firstTime[0]} seconds={state.firstTime[1]} isTimeout={state.isTimeout}/> :
+        <TimeViewer minutes={state.secondTime[0]} seconds={state.secondTime[1]} isTimeout={state.isTimeout}/>
       }</div>
       
       <div className={styles.inputs}>

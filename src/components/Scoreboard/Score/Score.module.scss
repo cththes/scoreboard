@@ -89,7 +89,6 @@
 .titleInputs{
    height:24px;
    position: relative;
-   bottom:30px;
 }
 
 .teamTitles{
@@ -99,10 +98,12 @@
    flex-direction:column;
    bottom:34%;
    color:white;
+   height:17%;
 }
 
 h2{
    margin-top:5px;
    margin-left:5px;
+   line-height: 50%;
 }
 

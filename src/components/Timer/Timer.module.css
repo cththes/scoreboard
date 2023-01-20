@@ -9,7 +9,8 @@
    color:#8f0100;
    font-size:100px;
    position: relative;
-   top:-170px;
+   top:-100px;
+   line-height: 100%;
 }
 
 .timer{
@@ -17,13 +18,14 @@
    color:black;
    font-size:140px;   
    position: relative;
-   top:-300px;
-   height:64vh;
+   top:-200px;
+   height:50vh;
+   line-height: 100%;
 }
 
 .inputs{
    justify-content: center;
-   margin-top:20px;
+   position:relative;
 }
 
 .buttons{
@@ -34,7 +36,9 @@
    width: 100px;
    height: 60px;
    padding: 5px;
-   margin-top:5px;
+   margin-top:15px;
+   margin-right:1px;
+   margin-left:1px;
 
    color: #8f0100;
 
