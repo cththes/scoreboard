@@ -17,10 +17,6 @@ const Score: React.FC<ScoreProps> = ({count, teamTitle, playerTitle, onTitleChan
 
    const dispatch = useAppDispatch();
 
-   const handleKeyDown = (event: any) => {
-      !editMode && dispatch(setCount(event.nativeEvent.code))
-   }
-
    const onPlusClick = () => {
       team === "left_team" ? dispatch(setCount("KeyQ")) : dispatch(setCount("KeyE"))}
 
@@ -29,7 +25,7 @@ const Score: React.FC<ScoreProps> = ({count, teamTitle, playerTitle, onTitleChan
    }
 
    return(
-      <div onKeyDown={(event) => handleKeyDown(event)} tabIndex={0}>
+      <div>
          <div className={team === "left_team" ? styles.leftCount : styles.rightCount}>
             {
                count < 10 ?

@@ -26,7 +26,7 @@ const initialState: TimerState = {
 
 type SetTimePayloadType = {
    id: string;
-   count: any;
+   count: number;
 }
 
 const timerSlice = createSlice({

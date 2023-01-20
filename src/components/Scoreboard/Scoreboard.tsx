@@ -2,27 +2,34 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import Timer from '../Timer/Timer';
 import styles from "./Scoreboard.module.scss"
-import { setEditMode, setTitle } from '../../store/scoreboardSlice';
+import { setEditMode, setTitle, setCount } from '../../store/scoreboardSlice';
 import Score from './Score/Score';
 
 const Scoreboard = () => {
    const state = useAppSelector(state => state.scoreboard)
    const dispatch = useAppDispatch();
 
+   const handleKeyDown = (e: any) => {
+      !state.editMode && dispatch(setCount(e.nativeEvent.code))
+   }
+
    const onTitleChange = (id: string, value: string) => {
       dispatch(setTitle({ id, value }))
    }
 
    return (
-      <div>
-         <div className={styles.scoreBoard}>
+      <div onKeyDown={(e) => handleKeyDown(e)} tabIndex={0}>
+         <div className={styles.scoreBoard} onKeyPress={(event: any) => {
+            dispatch(setCount(event.nativeEvent.code))
+         }}>
             <Score count={state.leftCount}
                teamTitle={state.leftTeamTitle}
                playerTitle={state.leftPlayerTitle}
                onTitleChange={onTitleChange}
                editMode={state.editMode}
                team="left_team"
-               player="left_player" />
+               player="left_player"
+            />
 
             <Timer setEditMode={setEditMode} editMode={state.editMode} />
 

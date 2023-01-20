@@ -14,9 +14,7 @@ const TimeInput: React.FC<TimeInputProps> = ({id, value, placeholder}) => {
 
    const dispatch = useAppDispatch();
 
-   const onEditTime = (id: string, count: any) => {
-      console.log('id:', id)
-      console.log('count:', count)
+   const onEditTime = (id: string, count: number) => {
       dispatch(setTime({ id, count }))
    }
 

@@ -38,6 +38,7 @@ const scoreboardSlice = createSlice({
    initialState,
    reducers: {
       setCount(state, action: PayloadAction<string>) {
+         console.log('setCount')
          switch (action.payload) {
             case 'KeyQ':
                state.leftCount = state.leftCount + 1;
