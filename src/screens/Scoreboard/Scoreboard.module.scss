@@ -1,0 +1,47 @@
+.scoreBoard{
+   display:grid;
+   grid-template-columns: 24vw 1fr 24vw;
+   height:90vh;
+   max-height:1080px;
+   background-color: #f0f2f5;
+}
+
+.title{
+   position:absolute;
+   bottom: 20px;;
+   margin-left: auto;
+   margin-right: auto;
+   left: 27%;
+   right:25.5%;
+   min-height: 80px;
+   bottom:10%;
+}
+
+.titleH1{
+   color: #8f0100;
+   font-size:calc(2.2vw + 4.4vh);
+   max-height: 120px;
+   margin: 0;
+   white-space: nowrap;
+   line-height: 100%;
+}
+
+
+.scoreData{
+   display:flex;
+   font-size:calc(1.2vw + 1.2vh);
+}
+
+.scoreDataLeft{
+   display:flex;
+   width:77%;
+}
+
+.scoreDataRight{
+   display:flex;
+}
+
+.scoreDataH2{
+   display:flex;
+}
+

@@ -1,0 +1,109 @@
+.leftCount{
+   display: grid;
+   width: 23vw;
+   grid-template-rows: 70%;
+   margin-left: 3px;
+   margin-right: auto;
+   margin-top:3vh;
+   background-color: #0d214f;
+   border-radius: 7%;
+   height:87vh;
+}
+
+.rightCount{
+   display: grid;
+   grid-template-rows: 70%;
+   width: 23.2vw;
+   margin-left:8px;
+   margin-right: auto;
+   margin-top:3vh;
+   background-color: #8f0100;
+   border-radius: 7%;
+   height:87vh;
+}
+
+.leftCount button, .rightCount button {
+   
+   width: 6.5vw;
+   height: 7.5vh;
+   padding: 5px;
+   margin:5px;
+
+   cursor: pointer;
+   transition: all 0.25s;
+
+   font-size:calc(2vh + 2vw);
+
+   border-radius: 5px;
+   border: 0;
+}
+
+.buttons{
+   max-height:150px;
+   display:flex;
+   align-items: flex-end;
+   justify-content: center;
+   bottom:15%;
+}
+
+.leftCount button{
+   color: #0d214f;
+   background-color: #0d214f;
+}
+
+.leftCount button:hover{
+   color: #0d214f;
+   background-color: #f0f2f5;
+}
+
+.rightCount button{
+   color: #8f0100;
+   background-color: #8f0100;
+}
+
+.rightCount button:hover{
+   color: #8f0100;
+   background-color: #f0f2f5;
+}
+
+.resetBtn button{
+   font-size:calc(1vh + 1vw);
+}
+
+.countNumber{
+   display:flex;
+   align-items: flex-start;
+   justify-content: center;
+   color: #f0f2f5;
+   font-size:calc(25vh + 15vw);
+   position: relative;
+   bottom: 60px;
+}
+
+.countNumberSmall{
+   color: #f0f2f5;
+   font-size:calc(15vh + 12vw);
+   justify-content: center;
+}
+
+.titleInputs{
+   height:24px;
+   position: relative;
+}
+
+.teamTitles{
+   position: relative;
+   display:flex;
+   align-items: flex-start;
+   flex-direction:column;
+   bottom:34%;
+   color:white;
+   height:17%;
+}
+
+h2{
+   margin-top:5px;
+   margin-left:5px;
+   line-height: 50%;
+}
+

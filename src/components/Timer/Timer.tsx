@@ -36,6 +36,11 @@ const Timer:React.FC<TimerProps> = ({ setEditMode, editMode }) => {
     play()
   }
 
+  const onPenaltyClick = () => {
+    if ((state.firstTime[0] === 0) && (state.firstTime[1] === 0)) return 
+    else dispatch(setPenalty())
+  }
+
   return (
     <div className={styles.main}>
       <div className={styles.penaltyTimer}>
@@ -53,8 +58,10 @@ const Timer:React.FC<TimerProps> = ({ setEditMode, editMode }) => {
         <form>
           <TimeInput value={state.firstTime[0]} id="main_minutes" placeholder="min"/>
           <TimeInput value={state.firstTime[1]} id="main_seconds" placeholder="sec"/>
+          :
           <TimeInput value={state.secondTime[0]} id="timeout_minutes" placeholder="min"/>
           <TimeInput value={state.secondTime[1]} id="timeout_seconds" placeholder="sec"/>
+          :
           <TimeInput value={state.penaltyTime[0]} id="penalty_minutes" placeholder="min"/>
           <TimeInput value={state.penaltyTime[1]} id="penalty_seconds" placeholder="sec"/>
         </form>}
@@ -67,7 +74,7 @@ const Timer:React.FC<TimerProps> = ({ setEditMode, editMode }) => {
           <button onClick={onStartClick}>Start</button>
         )}
         <button onClick={() => dispatch(handleReset())}>Reset</button>
-        <button onClick={() => dispatch(setPenalty())}>Penalty</button>
+        <button onClick={onPenaltyClick}>Penalty</button>
       </div>
     </div>
   )
