@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import Timer from '../Timer/Timer';
 import styles from "./Scoreboard.module.scss"
-import { setEditMode, setTitle, setCount } from '../../store/scoreboardSlice';
+import { setEditMode, setTitle, setCount, totalReset } from '../../store/scoreboardSlice';
 import Score from './Score/Score';
 
 const Scoreboard = () => {
@@ -15,6 +15,10 @@ const Scoreboard = () => {
 
    const onTitleChange = (id: string, value: string) => {
       dispatch(setTitle({ id, value }))
+   }
+
+   const onTotalResetClick = () => {
+      dispatch(totalReset())
    }
 
    return (
@@ -74,11 +78,14 @@ const Scoreboard = () => {
 
          <div className={styles.scoreData}>
             <div className={styles.scoreDataLeft}>
-               <h2>{state.leftPlayerTitle !== "" && state.leftPlayerTitle}</h2>
+               <h2>{state.leftPlayerTitle !== "" && state.leftPlayerTitle + ":"}</h2>
                <h2 className={styles.scoreDataH2}>{state.scoreData[0].map(sd => <div>{sd + '.'}</div>)}</h2>
             </div>
+            <div className={styles.totalResetBlock}>
+               <button onClick={onTotalResetClick} className={styles.totalResetBtn}>Reset Total</button>
+            </div>
             <div className={styles.scoreDataRight}>
-               <h2>{state.rightPlayerTitle}</h2>
+               <h2>{state.rightPlayerTitle !== "" && state.rightPlayerTitle + ":"}</h2>
                <h2 className={styles.scoreDataH2}>{state.scoreData[1].map(sd => <div>{sd + '.'}</div>)}</h2></div>
          </div>
       </div>
