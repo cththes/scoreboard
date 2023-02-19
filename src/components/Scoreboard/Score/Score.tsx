@@ -70,7 +70,7 @@ const Score: React.FC<ScoreProps> = ({count, teamTitle, playerTitle, onTitleChan
                <button onClick={onPlusClick}>+</button>
                <button onClick={onMinusClick}>-</button>
                <div id="resetBtn" className={styles.resetBtn}>
-                  <button onClick={() => dispatch(setCount("KeyR"))}>Reset</button>
+                  <button onClick={() => dispatch(setCount("KeyR"))}>Rеset</button>
                </div>
             </div>
          </div>

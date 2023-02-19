@@ -3,7 +3,7 @@ import Scoreboard from './components/Scoreboard/Scoreboard';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" translate="no">
         <Scoreboard />
     </div>
   );
