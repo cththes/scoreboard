@@ -34,8 +34,8 @@ const Score: React.FC<ScoreProps> = ({count, teamTitle, playerTitle, onTitleChan
                         {count}
                      </div>
                      <div className={styles.teamTitles} onDoubleClick={() => dispatch(setEditMode())}>
-                        <h2>{"Team: " + teamTitle}</h2>
-                        <h2>{"Player: " + playerTitle}</h2>
+                        <h2 className={styles.titleLarge}>{"Team: " + teamTitle}</h2>
+                        <h2 className={styles.titleLarge}>{"Player: " + playerTitle}</h2>
                      </div>
                   </div>
                   :
@@ -44,8 +44,8 @@ const Score: React.FC<ScoreProps> = ({count, teamTitle, playerTitle, onTitleChan
                         {count}
                      </div>
                      <div className={styles.teamTitles}>
-                        <h2>{"Team: " + teamTitle}</h2>
-                        <h2>{"Player: " + playerTitle}</h2>
+                        <h2 className={styles.titleLarge}>{"Team: " + teamTitle}</h2>
+                        <h2 className={styles.titleLarge}>{"Player: " + playerTitle}</h2>
                      </div>
                   </div>
             }
@@ -70,7 +70,7 @@ const Score: React.FC<ScoreProps> = ({count, teamTitle, playerTitle, onTitleChan
                <button onClick={onPlusClick}>+</button>
                <button onClick={onMinusClick}>-</button>
                <div id="resetBtn" className={styles.resetBtn}>
-                  <button onClick={() => dispatch(setCount("KeyR"))}>Rеset</button>
+                  <button onClick={() => dispatch(setCount("KeyR"))}>Reset</button>
                </div>
             </div>
          </div>

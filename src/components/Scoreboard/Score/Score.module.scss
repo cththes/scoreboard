@@ -108,3 +108,10 @@ h2{
    line-height: 50%;
 }
 
+.titleLarge{
+   font-size: 30px;
+   display:flex;
+   flex-wrap: wrap;
+   overflow-wrap: break-word;
+   line-height: 0.9em;
+}
