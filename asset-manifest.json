@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/scoreboard/static/css/main.e054f426.css",
-    "main.js": "/scoreboard/static/js/main.19d685fd.js",
+    "main.css": "/scoreboard/static/css/main.cf100ec9.css",
+    "main.js": "/scoreboard/static/js/main.a2028dad.js",
     "static/js/845.dfb13e76.chunk.js": "/scoreboard/static/js/845.dfb13e76.chunk.js",
     "static/js/787.abbcb2e9.chunk.js": "/scoreboard/static/js/787.abbcb2e9.chunk.js",
     "static/media/gong.mp3": "/scoreboard/static/media/gong.1f057385f4d6ef32d457.mp3",
     "index.html": "/scoreboard/index.html",
-    "main.e054f426.css.map": "/scoreboard/static/css/main.e054f426.css.map",
-    "main.19d685fd.js.map": "/scoreboard/static/js/main.19d685fd.js.map",
+    "main.cf100ec9.css.map": "/scoreboard/static/css/main.cf100ec9.css.map",
+    "main.a2028dad.js.map": "/scoreboard/static/js/main.a2028dad.js.map",
     "845.dfb13e76.chunk.js.map": "/scoreboard/static/js/845.dfb13e76.chunk.js.map",
     "787.abbcb2e9.chunk.js.map": "/scoreboard/static/js/787.abbcb2e9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e054f426.css",
-    "static/js/main.19d685fd.js"
+    "static/css/main.cf100ec9.css",
+    "static/js/main.a2028dad.js"
   ]
 }
