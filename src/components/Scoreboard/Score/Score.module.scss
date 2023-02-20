@@ -90,6 +90,7 @@
 .titleInputs{
    height:24px;
    position: relative;
+   bottom:20%;
 }
 
 .teamTitles{
@@ -97,7 +98,7 @@
    display:flex;
    align-items: flex-start;
    flex-direction:column;
-   bottom:34%;
+   bottom:25%;
    color:white;
    height:17%;
 }
@@ -109,9 +110,9 @@ h2{
 }
 
 .titleLarge{
-   font-size: 30px;
+   font-size: 32px;
    display:flex;
-   flex-wrap: wrap;
    overflow-wrap: break-word;
-   line-height: 0.9em;
+   line-height: 1.2em;
+   text-align: left;
 }
