@@ -79,14 +79,14 @@ const Scoreboard = () => {
          <div className={styles.scoreData}>
             <div className={styles.scoreDataLeft}>
                <h2 className={styles.titleLarge}>{state.leftPlayerTitle !== "" && state.leftPlayerTitle + ":"}</h2>
-               <h2>{state.scoreData[0].map(sd => <div>{sd + '.'}</div>)}</h2>
+               <h2 className={styles.titleLarge}>{state.scoreData[0].map(sd => <div>{sd + '.'}</div>)}</h2>
             </div>
             <div className={styles.totalResetBlock}>
                <button onClick={onTotalResetClick} className={styles.totalResetBtn}>Reset Total</button>
             </div>
             <div className={styles.scoreDataRight}>
                <h2 className={styles.titleLarge}>{state.rightPlayerTitle !== "" && state.rightPlayerTitle + ":"}</h2>
-               <h2 className={styles.scoreDataH2}>{state.scoreData[1].map(sd => <div>{sd + '.'}</div>)}</h2></div>
+               <h2 className={styles.titleLarge}>{state.scoreData[1].map(sd => <div>{sd + '.'}</div>)}</h2></div>
          </div>
       </div>
    )
