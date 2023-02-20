@@ -65,6 +65,9 @@ const timerSlice = createSlice({
                if (state.secondTime[0] === 0 && state.secondTime[1] === 0) {
                   state.isCounting = false;
                   state.isTimeout = false
+                  state.resetTime[1][1] += 1
+                  state.firstTime = state.resetTime[0]
+                  state.secondTime = state.resetTime[1]
                }
                if (state.secondTime[1] > 0) state.secondTime[1] -= 1
                else {
@@ -117,7 +120,7 @@ const timerSlice = createSlice({
                count < 99 ? state.penaltyTime[1] = count : state.penaltyTime[1] = 59
                break;
             }
-            default: return 
+            default: return
          }
       },
       clearIsRecordScore(state) {
