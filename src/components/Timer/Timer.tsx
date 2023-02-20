@@ -10,12 +10,13 @@ import gong from "../../assets/gong.mp3"
 
 interface TimerProps {
   setEditMode: any,
-  editMode: boolean
+  editMode: boolean,
 }
 
-const Timer:React.FC<TimerProps> = ({ setEditMode, editMode }) => {
+const Timer:React.FC<TimerProps> = ({ setEditMode, editMode}) => {
 
   const state = useAppSelector(state => state.timer)
+  const scoreDataLength = useAppSelector(state => state.scoreboard.scoreData[0].length)
   const dispatch = useAppDispatch();
   const [play] = useSound(gong)
 
@@ -75,6 +76,7 @@ const Timer:React.FC<TimerProps> = ({ setEditMode, editMode }) => {
         )}
         <button onClick={() => dispatch(handleReset())}>Reset</button>
         <button onClick={onPenaltyClick}>Penalty</button>
+        <h1 className={styles.roundName}>Round {scoreDataLength + 1}</h1>
       </div>
     </div>
   )

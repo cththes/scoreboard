@@ -35,7 +35,7 @@ const Scoreboard = () => {
                player="left_player"
             />
 
-            <Timer setEditMode={setEditMode} editMode={state.editMode} />
+            <Timer setEditMode={setEditMode} editMode={state.editMode}/>
 
             <div className={styles.title} onDoubleClick={() => dispatch(setEditMode())}>
                {state.editMode &&
