@@ -17,7 +17,7 @@ const initialState: TimerState = {
    firstTime: [0, 0],
    secondTime: [0, 0],
    penaltyTime: [0, 0],
-   resetTime: [[0], [0]],
+   resetTime: [[0, 0], [0, 0]],
    isCounting: false,
    isTimeout: false,
    isPenalty: false,
@@ -42,6 +42,7 @@ const timerSlice = createSlice({
       },
       handleReset(state) {
          state.isCounting = false
+         state.isTimeout = false
          state.firstTime = state.resetTime[0]
          state.secondTime = state.resetTime[1]
       },

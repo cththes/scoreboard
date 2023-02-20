@@ -85,7 +85,7 @@ const Scoreboard = () => {
                <button onClick={onTotalResetClick} className={styles.totalResetBtn}>Rеset Total</button>
             </div>
             <div className={styles.scoreDataRight}>
-               <h2>{state.rightPlayerTitle !== "" && state.rightPlayerTitle + ":"}</h2>
+               <h2 className={styles.titleLarge}>{state.rightPlayerTitle !== "" && state.rightPlayerTitle + ":"}</h2>
                <h2 className={styles.scoreDataH2}>{state.scoreData[1].map(sd => <div>{sd + '.'}</div>)}</h2></div>
          </div>
       </div>
